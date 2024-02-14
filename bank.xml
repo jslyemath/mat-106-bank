@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bank xmlns="https://checkit.clontz.org" version="0.2">
+    <title>MAT 106 - Number Systems and Operations - CheckIt Bank</title>
+    <slug>mat-106-bank</slug>
+    <url>https://checkit.clontz.org</url>
+    <outcomes>
+        <outcome>
+            <title>Ancient Numeration Systems</title>
+            <slug>W1</slug>
+            <path>outcomes/W1</path>
+            <description>
+                W1: I can convert the ancient Roman/Babylonian/Egyptian numeration systems to modern Hindu-Arabic base ten, and vice versa.
+            </description>
+        </outcome>
+    </outcomes>
+</bank>

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<knowl mode="exercise" xmlns="https://spatext.clontz.org" version="0.2">
+    <knowl>
+        <content>
+            <p>Convert {{to_a_modern}} to {{to_a_system}}.</p>
+            <p>{{test}}</p>
+            <!-- <p>
+            <image source="assets/W1/Hmillion.png" description="Heh - one million."/>
+            <image source="assets/W1/Hthousand.png" description="Water lily - one thousand."/>
+            </p> -->
+        </content>
+        <outtro>
+            <p>{{to_a_ancient}}</p>
+        </outtro>
+    </knowl>
+    <knowl>
+        <content>
+            <p>Convert the following {{to_m_system}} numeral to modern Hindu-Arabic base ten.</p>
+            <p>{{to_m_ancient}}</p>
+        </content>
+        <outtro>
+            <p>{{to_m_modern}}</p>
+        </outtro>
+    </knowl>
+</knowl>
