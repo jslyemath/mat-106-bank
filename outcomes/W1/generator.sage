@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/home/slye/jeffs-test-bank/outcomes')
+sys.path.append('/home/slye/mat-106-bank/outcomes/')
 import slye_math as sm
 
 
@@ -36,4 +36,5 @@ class Generator(BaseGenerator):
             'to_m_ancient': f'{to_m_ancient}',
             'to_m_system': f'{to_m_system}',
             'to_m_modern': f'{int(to_m_modern):,}',
+            'test': '3x'
         }

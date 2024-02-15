@@ -15,22 +15,22 @@ def is_iterable(obj):
         return False
     
 
-def stich_images():
-    # https://stackoverflow.com/questions/30227466/combine-several-images-horizontally-with-python
-    images = [Image.open(x) for x in ['Test1.jpg', 'Test2.jpg', 'Test3.jpg']]
-    widths, heights = zip(*(i.size for i in images))
+# def stich_images():
+#     # https://stackoverflow.com/questions/30227466/combine-several-images-horizontally-with-python
+#     images = [Image.open(x) for x in ['Test1.jpg', 'Test2.jpg', 'Test3.jpg']]
+#     widths, heights = zip(*(i.size for i in images))
 
-    total_width = sum(widths)
-    max_height = max(heights)
+#     total_width = sum(widths)
+#     max_height = max(heights)
 
-    new_im = Image.new('RGB', (total_width, max_height))
+#     new_im = Image.new('RGB', (total_width, max_height))
 
-    x_offset = 0
-    for im in images:
-    new_im.paste(im, (x_offset,0))
-    x_offset += im.size[0]
+#     x_offset = 0
+#     for im in images:
+#     new_im.paste(im, (x_offset,0))
+#     x_offset += im.size[0]
 
-    new_im.save('test.jpg')
+#     new_im.save('test.jpg')
 
 
 def int_creator(place_values=1, excl_first=None, excl_last=None, wt_0=0.0, wt_1=0.0, wt_2=0.0, wt_3=0.0, wt_4=0.0,

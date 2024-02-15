@@ -3,7 +3,7 @@
     <knowl>
         <content>
             <p>Convert {{to_a_modern}} to {{to_a_system}}.</p>
-            <p>{{test}}</p>
+            <p><m>3x</m></p>
             <!-- <p>
             <image source="assets/W1/Hmillion.png" description="Heh - one million."/>
             <image source="assets/W1/Hthousand.png" description="Water lily - one thousand."/>
