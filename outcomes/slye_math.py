@@ -113,7 +113,7 @@ def to_egyptian(num):
 def to_simple_babylonian(num):
     base_60 = base_conv_list(num, 60)
 
-    bab_python_zero = 'zero'
+    bab_python_zero = '\U000120F5'
 
     bab_python = ('\U00012079', '\U0001230B')
 
