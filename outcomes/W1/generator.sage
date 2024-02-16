@@ -36,5 +36,5 @@ class Generator(BaseGenerator):
             'to_m_ancient': f'{to_m_ancient}',
             'to_m_system': f'{to_m_system}',
             'to_m_modern': f'{int(to_m_modern):,}',
-            'test': '𓁨𓁨𓁨𓆐𓂭𓂭𓂭𓂭𓆼𓆼𓆼𓆼𓆼𓎆𓎆𓎆𓎆𓏺𓏺𓏺𓏺𓏺'
+            'test': r'\Huge 𓁨𓁨𓁨𓆐𓂭𓂭𓂭𓂭𓆼𓆼𓆼𓆼𓆼𓎆𓎆𓎆𓎆𓏺𓏺𓏺𓏺𓏺'
         }
