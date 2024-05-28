@@ -33,21 +33,21 @@ def is_iterable(obj):
 #     new_im.save('test.jpg')
 
 
-def int_creator(place_values=1, excl_first=None, excl_last=None, wt_0=0.0, wt_1=0.0, wt_2=0.0, wt_3=0.0, wt_4=0.0,
-                wt_5=0.0, wt_6=0.0, wt_7=0.0, wt_8=0.0, wt_9=0.0):
+def int_creator(place_values=1, excl_first=[0], excl_last=[0], wt_0=None, wt_1=None, wt_2=None, wt_3=None, wt_4=None,
+                wt_5=None, wt_6=None, wt_7=None, wt_8=None, wt_9=None):
     the_digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     wt_list = [wt_0, wt_1, wt_2, wt_3, wt_4, wt_5, wt_6, wt_7, wt_8, wt_9]
-    wt_rem = 1 - sum(wt_list)
-    if wt_rem == 1:
+    non_wtd = sum(1 for wt in wt_list if wt is None)
+    if non_wtd == 10:
         for i in range(len(wt_list)):
             wt_list[i] = 0.1
     else:
-        non_wtd = sum(1 for wt in wt_list if wt == 0)
+        wt_rem = 1 - sum(wt for wt in wt_list if wt is not None)
         wt_rem_split = wt_rem / non_wtd
 
         for i in range(len(wt_list)):
-            if wt_list[i] == 0:
+            if wt_list[i] is None:
                 wt_list[i] = wt_rem_split
 
     if excl_first is None:

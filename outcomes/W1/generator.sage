@@ -26,6 +26,10 @@ class Generator(BaseGenerator):
         shuffle(chosen_systems)
         to_ancient_func, to_modern_func = chosen_systems
 
+        egy_test = False
+        if other_system == egy_modern:
+            egy_test = True
+
         to_a_ancient, to_a_modern, to_a_system = to_ancient_func()
         to_m_ancient, to_m_modern, to_m_system = to_modern_func()
 
@@ -36,5 +40,5 @@ class Generator(BaseGenerator):
             'to_m_ancient': f'{to_m_ancient}',
             'to_m_system': f'{to_m_system}',
             'to_m_modern': f'{int(to_m_modern):,}',
-            'test': r'\Huge 𓁨𓁨𓁨𓆐𓂭𓂭𓂭𓂭𓆼𓆼𓆼𓆼𓆼𓎆𓎆𓎆𓎆𓏺𓏺𓏺𓏺𓏺'
+            'egy_test': egy_test
         }
