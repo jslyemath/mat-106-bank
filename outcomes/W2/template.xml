@@ -16,7 +16,7 @@
             <p>{{base_b_prob}}</p>
         </content>
         <outtro>
-            <p>{{base_b_ans}}</p>
+            <p><m>{{base_b_ans}}</m></p>
         </outtro>
     </knowl>
 </knowl>

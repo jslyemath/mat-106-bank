@@ -9,7 +9,16 @@
             <slug>W1</slug>
             <path>outcomes/W1</path>
             <description>
-                W1: I can convert the ancient Roman/Babylonian/Egyptian numeration systems to modern Hindu-Arabic base ten, and vice versa.
+                I can convert the ancient Roman/Babylonian/Egyptian numeration systems to modern Hindu-Arabic base ten, and vice versa.
+            </description>
+        </outcome>
+        
+        <outcome>
+            <title>Base-b Addition and Subtraction Algorithms</title>
+            <slug>W2</slug>
+            <path>outcomes/W2</path>
+            <description>
+                I can compute addition and subtraction of multi-digit base-b whole numbers using non-standard addition and subtraction algorithms.
             </description>
         </outcome>
         
@@ -18,7 +27,7 @@
             <slug>D1</slug>
             <path>outcomes/D1</path>
             <description>
-                D1: I can identify place values in decimal numbers using both numerical notation and English words, and represent decimal numbers using base-ten blocks.
+                I can identify place values in decimal numbers using both numerical notation and English words, and represent decimal numbers using base-ten blocks.
             </description>
         </outcome>
     </outcomes>
