@@ -1,13 +1,14 @@
 import sys
 sys.path.append('/home/slye/mat-106-bank/outcomes/')
 import slye_math as sm
+import random
 
 
 class Generator(BaseGenerator):
 
     def data(self):
         def bab_modern():
-            modern = choice(range(3501, 162000))
+            modern = random.choice(range(3501, 162000))
             bab = sm.to_simple_babylonian(modern)
             return bab, modern, 'ancient Babylonian'
 
@@ -17,11 +18,11 @@ class Generator(BaseGenerator):
             return rom, modern, 'Roman'
 
         def egy_modern():
-            modern = choice(range(100000, 4000000))
+            modern = random.choice(range(100000, 4000000))
             egy = sm.to_egyptian(modern)
             return egy, modern, 'ancient Egyptian'
 
-        other_system = choice([rom_modern, egy_modern])
+        other_system = random.choice([rom_modern, egy_modern])
         chosen_systems = [bab_modern, other_system]
         shuffle(chosen_systems)
         to_ancient_func, to_modern_func = chosen_systems
