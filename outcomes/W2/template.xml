@@ -1,20 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <knowl mode="exercise" xmlns="https://spatext.clontz.org" version="0.2">
+    <intro>
+        <p>Compute each of the following using the stated algorithm. You must show all calculations in the desired base, and not by converting between bases.</p>
+    </intro>
     <knowl>
         <content>
-            <p>Convert {{to_a_modern}} to {{to_a_system}}.</p>
+            <p>{{base_ten_prob}}</p>
         </content>
         <outtro>
-            <p>{{to_a_ancient}}</p>
+            <p>{{base_ten_ans}}</p>
         </outtro>
     </knowl>
     <knowl>
         <content>
-            <p>Convert the following {{to_m_system}} numeral to modern Hindu-Arabic base ten.</p>
-            <p>{{to_m_ancient}}</p>
+            <p>{{base_b_prob}}</p>
         </content>
         <outtro>
-            <p>{{to_m_modern}}</p>
+            <p>{{base_b_ans}}</p>
         </outtro>
     </knowl>
 </knowl>
