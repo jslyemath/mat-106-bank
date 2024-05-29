@@ -2,19 +2,18 @@
 <knowl mode="exercise" xmlns="https://spatext.clontz.org" version="0.2">
     <knowl>
         <content>
-            <p>Convert {{to_a_modern}} to {{to_a_system}}.</p>
+            <p>Consider the number {{pv_dec_string}}. Identify and name each of the place values used in this number. Write these names using both a numerical label (e.g. ``10s'') and an English-word label (e.g. ``tens'').</p>
         </content>
         <outtro>
-            <p>{{to_a_ancient}}</p>
+            <p>{{pv_ans_text}}</p>
         </outtro>
     </knowl>
     <knowl>
         <content>
-            <p>Convert the following {{to_m_system}} numeral to modern Hindu-Arabic base ten.</p>
-            <p>{{to_m_ancient}}</p>
+            <p>Using {{units_block_choice}} to represent the units, draw a base-ten block representation of the number {{blocks_dec}}.</p>
         </content>
         <outtro>
-            <p>{{to_m_modern}}</p>
+            <p>{{blocks_ans_text}}</p>
         </outtro>
     </knowl>
 </knowl>

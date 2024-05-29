@@ -33,7 +33,7 @@ def is_iterable(obj):
 #     new_im.save('test.jpg')
 
 
-def int_creator(place_values=1, excl_first=[0], excl_last=[0], wt_0=None, wt_1=None, wt_2=None, wt_3=None, wt_4=None,
+def int_string(place_values=1, excl_first=[0], excl_last=[], wt_0=None, wt_1=None, wt_2=None, wt_3=None, wt_4=None,
                 wt_5=None, wt_6=None, wt_7=None, wt_8=None, wt_9=None):
     the_digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
@@ -72,17 +72,36 @@ def int_creator(place_values=1, excl_first=[0], excl_last=[0], wt_0=None, wt_1=N
         ld_wt_list.append(wt_list[digit])
 
     first_digit = random.choices(first_digits, weights=fd_wt_list, k=1)
-    middle_digits = random.choices(the_digits, weights=ld_wt_list, k=place_values - 2)
+    middle_digits = random.choices(the_digits, weights=wt_list, k=place_values - 2)
     if place_values == 1:
         last_digit = []
     else:
-        last_digit = random.choices(last_digits, weights=wt_list, k=1)
+        last_digit = random.choices(last_digits, weights=ld_wt_list, k=1)
     all_digits = first_digit + middle_digits + last_digit
     all_digits_strings = [str(digit) for digit in all_digits]
 
-    our_int = ''.join(all_digits_strings)
+    our_int_string = ''.join(all_digits_strings)
 
-    return our_int
+    return our_int_string
+
+def dec_string(dec_offset=-1, place_values=1, excl_first=[0], excl_last=[0], wt_0=None, wt_1=None, wt_2=None, wt_3=None, wt_4=None,
+                wt_5=None, wt_6=None, wt_7=None, wt_8=None, wt_9=None, custom_string=None):
+    
+    if dec_offset > 0:
+        raise ValueError(f"Nonpositive integer expected for dec_offset, got '{dec_offset}'")
+
+    our_int_string = custom_string
+
+    if our_int_string == None:
+        our_int_string = int_string(place_values, excl_first, excl_last, wt_0, wt_1, wt_2, wt_3, wt_4, wt_5, wt_6, wt_7, wt_8, wt_9)
+
+    if abs(dec_offset) >= place_values:
+        num_extra_zeros = 1 + abs(dec_offset) - place_values
+        our_int_string = '0'*num_extra_zeros + our_int_string
+
+    our_dec_string = f'{int(our_int_string[:dec_offset]):,}' + '.' + our_int_string[dec_offset:]
+
+    return our_dec_string
 
 
 def base_conv_list(original_int, base):

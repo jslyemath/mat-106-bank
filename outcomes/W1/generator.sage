@@ -12,7 +12,7 @@ class Generator(BaseGenerator):
             return bab, modern, 'ancient Babylonian'
 
         def rom_modern():
-            modern = int(sm.int_creator(4, (0, 4, 5, 6, 7, 8, 9), wt_0=.03, wt_4=.2, wt_6=.2, wt_9=.2))
+            modern = int(sm.int_string(4, (0, 4, 5, 6, 7, 8, 9), wt_0=.03, wt_4=.2, wt_6=.2, wt_9=.2))
             rom = sm.to_roman(modern)
             return rom, modern, 'Roman'
 
