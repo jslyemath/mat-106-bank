@@ -5,7 +5,7 @@
     </intro>
     <knowl>
         <content>
-            <p>{{base_ten_prob}}</p>
+            <p><m>{{base_ten_prob}}</m> ({{base_ten_alg}})</p>
         </content>
         <outtro>
             <p>{{base_ten_ans}}</p>
@@ -13,7 +13,7 @@
     </knowl>
     <knowl>
         <content>
-            <p>{{base_b_prob}}</p>
+            <p><m>{{base_b_prob}}</m> ({{base_b_alg}})</p>
         </content>
         <outtro>
             <p><m>{{base_b_ans}}</m></p>

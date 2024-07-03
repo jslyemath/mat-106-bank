@@ -13,24 +13,6 @@ def is_iterable(obj):
         return True
     except TypeError:
         return False
-    
-
-# def stich_images():
-#     # https://stackoverflow.com/questions/30227466/combine-several-images-horizontally-with-python
-#     images = [Image.open(x) for x in ['Test1.jpg', 'Test2.jpg', 'Test3.jpg']]
-#     widths, heights = zip(*(i.size for i in images))
-
-#     total_width = sum(widths)
-#     max_height = max(heights)
-
-#     new_im = Image.new('RGB', (total_width, max_height))
-
-#     x_offset = 0
-#     for im in images:
-#     new_im.paste(im, (x_offset,0))
-#     x_offset += im.size[0]
-
-#     new_im.save('test.jpg')
 
 
 def int_string(place_values=1, excl_first=[0], excl_last=[], wt_0=None, wt_1=None, wt_2=None, wt_3=None, wt_4=None,
@@ -42,7 +24,7 @@ def int_string(place_values=1, excl_first=[0], excl_last=[], wt_0=None, wt_1=Non
     if non_wtd == 10:
         for i in range(len(wt_list)):
             wt_list[i] = 0.1
-    else:
+    elif non_wtd > 0:
         wt_rem = 1 - sum(wt for wt in wt_list if wt is not None)
         wt_rem_split = wt_rem / non_wtd
 
@@ -114,6 +96,13 @@ def base_conv_list(original_int, base):
         original_int //= base
     return digits[::-1]
 
+def int_base_op(num1, num2, op, base):
+    base=int(base)
+    num1 = str(num1)
+    num2 = str(num2)
+    val_as_list = base_conv_list(eval(str(int(num1, base=base)) + op + str(int(num2, base=base))), base)
+    return int(''.join([str(elem) for elem in val_as_list]))
+
 
 def to_egyptian(num):
     egy_python = ('\U000133FA', '\U00013386', '\U00013362', '\U000131BC', '\U000130AD', '\U00013190', '\U00013068')
@@ -167,6 +156,35 @@ def to_roman(num):
                 num -= i
     return roman
 
+def samples(population, weights=None, k=1, rng=random):
+    # https://maxhalford.github.io/blog/weighted-sampling-without-replacement/
+    # https://stackoverflow.com/questions/26785354/normalizing-a-list-of-numbers-in-python
+    if weights is None:
+        weights = []
+        weights += len(population) * [1]
+    normed_weights = [float(i)/sum(weights) for i in weights]
+    v = [rng.random() ** (1 / w) for w in normed_weights]
+    order = sorted(range(len(population)), key=lambda i: v[i])
+    return [population[i] for i in order[-k:]]
+
+def constrained_weak_composition(n, k, min_elem, max_elem):
+    # https://stackoverflow.com/questions/58915599/generate-restricted-weak-integer-compositions-or-partitions-of-an-integer-n-in
+    allowed = range(max_elem, min_elem-1, -1)
+
+    def helper(n, k, t):
+        if k == 0:
+            if n == 0:
+                yield t
+        elif k == 1:
+            if n in allowed:
+                yield t + [n]
+        elif min_elem * k <= n <= max_elem * k:
+            for v in allowed:
+                yield from helper(n - v, k - 1, t + [v])
+
+    full_list = list(helper(n, k, []))
+
+    return random.choice(full_list)
 
 if __name__ == "__main__":
     main()

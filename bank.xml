@@ -23,6 +23,15 @@
         </outcome>
         
         <outcome>
+            <title>Properties of Addition and Multiplication</title>
+            <slug>W3</slug>
+            <path>outcomes/W3</path>
+            <description>
+                I can identify uses of the associative, commutative, identity, zero product, and distributive properties of addition and multiplication.
+            </description>
+        </outcome>
+        
+        <outcome>
             <title>Decimal Place Values</title>
             <slug>D1</slug>
             <path>outcomes/D1</path>
