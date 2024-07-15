@@ -50,6 +50,24 @@
         </outcome>
         
         <outcome>
+            <title>Divisibility Statements</title>
+            <slug>N1</slug>
+            <path>outcomes/N1</path>
+            <description>
+                I can identify divisibility statements as true or false.
+            </description>
+        </outcome>
+        
+        <outcome>
+            <title>Testing for Prime or Not Prime</title>
+            <slug>N2</slug>
+            <path>outcomes/N2</path>
+            <description>
+                I can determine if a number is prime or composite via the prime testing method.
+            </description>
+        </outcome>
+        
+        <outcome>
             <title>Decimal Place Values</title>
             <slug>D1</slug>
             <path>outcomes/D1</path>
