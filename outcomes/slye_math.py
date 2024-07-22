@@ -211,5 +211,15 @@ def constrained_weak_composition(n, k, min_elem, max_elem):
 
     return random.choice(full_list)
 
+def list_intersect(list_a, list_b):
+    # https://stackoverflow.com/a/45313655
+    set_intersection = set(list_a).intersection(set(list_b))
+    list_intersection = []
+    for i in set_intersection:
+        num = min(list_a.count(i), list_b.count(i))
+        for j in range(num):
+            list_intersection.append(i)
+    return sorted(list_intersection)
+
 if __name__ == "__main__":
     main()

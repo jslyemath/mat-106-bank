@@ -68,6 +68,24 @@
         </outcome>
         
         <outcome>
+            <title>Finding the GCD</title>
+            <slug>N3</slug>
+            <path>outcomes/N3</path>
+            <description>
+                I can compute the greatest common divisor (GCD) of two numbers using the listing and prime factorization methods.
+            </description>
+        </outcome>
+        
+        <outcome>
+            <title>Finding the LCM</title>
+            <slug>N4</slug>
+            <path>outcomes/N4</path>
+            <description>
+                I can compute the least common multiple (LCM) of two numbers using the listing and prime factorization methods.
+            </description>
+        </outcome>
+        
+        <outcome>
             <title>Decimal Place Values</title>
             <slug>D1</slug>
             <path>outcomes/D1</path>
