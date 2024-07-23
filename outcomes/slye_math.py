@@ -1,5 +1,5 @@
 import random
-# import sys
+from typing import Any, List
 
 
 def main():
@@ -220,6 +220,13 @@ def list_intersect(list_a, list_b):
         for j in range(num):
             list_intersection.append(i)
     return sorted(list_intersection)
+
+def readable_list(seq: List[Any]) -> str:
+    # https://stackoverflow.com/a/53981846
+    seq = [str(s) for s in seq]
+    if len(seq) < 3:
+        return ' and '.join(seq)
+    return ', '.join(seq[:-1]) + ', and ' + seq[-1]
 
 if __name__ == "__main__":
     main()
