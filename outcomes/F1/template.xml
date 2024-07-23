@@ -14,7 +14,7 @@
             <p>Convert <m>{{convert_prob}}</m> to {{convert_type}}.</p>
         </content>
         <outtro>
-            <p>{{convert_ans}}</p>
+            <p><m>{{convert_ans}}</m></p>
         </outtro>
     </knowl>
 
