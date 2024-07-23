@@ -5,7 +5,7 @@
             <p>Write <m>{{simplify_prob}}</m> in simplest form.</p>
         </content>
         <outtro>
-            <p>The above simplifies to {{simplify_ans}}, after pulling out {{factors_sequence}} from both the numerator and denominator.</p>
+            <p>The above simplifies to <m>{{simplify_ans}}</m>, after pulling out {{factors_sequence}} from both the numerator and denominator.</p>
         </outtro>
     </knowl>
     
