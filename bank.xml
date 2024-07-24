@@ -95,6 +95,15 @@
         </outcome>
         
         <outcome>
+            <title>Modeling Fractions</title>
+            <slug>F2</slug>
+            <path>outcomes/F2</path>
+            <description>
+                I can construct both number line and area models for fractions.
+            </description>
+        </outcome>
+        
+        <outcome>
             <title>Decimal Place Values</title>
             <slug>D1</slug>
             <path>outcomes/D1</path>
