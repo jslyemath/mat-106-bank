@@ -1,4 +1,5 @@
 import random
+import math
 from typing import Any, List
 
 
@@ -227,6 +228,32 @@ def readable_list(seq: List[Any]) -> str:
     if len(seq) < 3:
         return ' and '.join(seq)
     return ', '.join(seq[:-1]) + ', and ' + seq[-1]
+
+def rel_primes(n):
+    n = abs(int(n))
+    if n == 0:
+        return None
+    rel_primes_list = []
+    if n == 1:
+        return [1]
+    for i in range(1, n):
+        if math.gcd(n,i) == 1:
+            rel_primes_list.append(i)
+    return rel_primes_list
+
+def divisors(n):
+    n = abs(int(n))
+    if n == 0:
+        return None
+    divisors_list = []
+    if n == 1:
+        return [1]
+    for i in range(1, n//2 + 1):
+        if n % i == 0:
+            divisors_list.append(i)
+    divisors_list.append(n)
+    return divisors_list
+    
 
 if __name__ == "__main__":
     main()
