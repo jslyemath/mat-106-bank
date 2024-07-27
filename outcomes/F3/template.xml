@@ -5,11 +5,11 @@
             <p>Find <m>{{p1_how_many}}</m> rational numbers between <m>{{p1_a}}</m> and <m>{{p1_b}}</m>. {{num_line_directions}}</p>
         </content>
         <outtro>
-            <!-- <p>
+            <p>
                 <image
                     source="assets/F3/generated/{{__seed__}}/{{filename}}.png"
                     description="Number line with points {{p1_numbers}} graphed accurately between {{p1_a}} and {{p1_b}}."/>
-            </p> -->
+            </p>
         </outtro>
     </knowl>
 
