@@ -113,6 +113,15 @@
         </outcome>
         
         <outcome>
+            <title>Basic Operations with Mixed Numbers</title>
+            <slug>F4</slug>
+            <path>outcomes/F4</path>
+            <description>
+                I can compute the sum, difference, product, and quotient of mixed numbers.
+            </description>
+        </outcome>
+        
+        <outcome>
             <title>Decimal Place Values</title>
             <slug>D1</slug>
             <path>outcomes/D1</path>

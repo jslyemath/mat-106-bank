@@ -7,7 +7,7 @@
         <outtro>
             <p>
                 <image
-                    source="assets/F3/generated/{{__seed__}}/{{filename}}.png"
+                    source="assets/F3/generated/{{__seed__}}/line_with_dec_marked.png"
                     description="Number line with points {{p1_numbers}} graphed accurately between {{p1_a}} and {{p1_b}}."/>
             </p>
         </outtro>
