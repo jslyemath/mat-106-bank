@@ -1,10 +1,28 @@
 import random
 import math
+from fractions import Fraction
 from typing import Any, List
 
 
 def main():
     pass
+
+
+def sign(x):
+    if Fraction(x).numerator == 0:
+        return 0
+    else:
+        return int(Fraction(x) / abs(Fraction(x)))
+    
+
+def mixed_number(x):
+    sign_x = sign(x)
+    x = abs(Fraction(x))
+    d = x.denominator
+    i = x.numerator
+    w = i // d
+    n = i % d
+    return sign_x * w, Fraction(n, d).numerator, Fraction(n, d).denominator 
 
 
 def is_iterable(obj):
