@@ -36,7 +36,7 @@ def plot_area_model(shape='circle', numerator=1, denominator=1, dir_path='outcom
 
         ax.set_aspect('equal')
         ax.set_xlim(-1, 2.1 * n -1)
-        ax.set_ylim(-1, 1)
+        ax.set_ylim(-1.1, 1.1)
         ax.axis('off')
         
         # Save the plot to a file
@@ -127,7 +127,7 @@ def plot_area_model(shape='circle', numerator=1, denominator=1, dir_path='outcom
 
         ax.set_aspect('equal')
         ax.set_xlim(-1, 2.1 * n - 1)
-        ax.set_ylim(0,1)
+        ax.set_ylim(-0.1,1.1)
         ax.axis('off')
         
         # Save the plot to a file
@@ -196,7 +196,7 @@ def plot_area_model(shape='circle', numerator=1, denominator=1, dir_path='outcom
 
         ax.set_aspect('equal')
         ax.set_xlim(-0.5, 1.1 * n - 0.6)
-        ax.set_ylim(0, np.sqrt(3) / 2)
+        ax.set_ylim(-0.1, np.sqrt(3) / 2 + 0.1)
         ax.axis('off')
         
         # Save the plot to a file
@@ -312,7 +312,7 @@ def plot_area_model(shape='circle', numerator=1, denominator=1, dir_path='outcom
 
         ax.set_aspect('equal')
         ax.set_xlim(0, 2.6 * n -0.6)
-        ax.set_ylim(0, 1)
+        ax.set_ylim(-0.1, 1.1)
         ax.axis('off')
         
         # Save the plot to a file
@@ -355,7 +355,7 @@ def plot_area_model(shape='circle', numerator=1, denominator=1, dir_path='outcom
 
         ax.set_aspect('equal')
         ax.set_xlim(-1, 2.5 * n -1.5)
-        ax.set_ylim(0, 1)
+        ax.set_ylim(-0.1, 1.1)
         ax.axis('off')
         
         # Save the plot to a file
@@ -498,7 +498,7 @@ with open('assets/F2/generated/seeds.json', 'r') as file:
     
 print('Generating...')
 # matplotlib has memory leaks that I can't figure out - do the ranges in batches
-for i in range(900, 1000):
+for i in range(0, 50):
     data = seeds_dict['seeds'][i]['data']
 
     seed_folder = os.path.join(generated_folder, data['__seed__'])
