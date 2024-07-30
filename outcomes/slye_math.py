@@ -247,14 +247,16 @@ def readable_list(seq: List[Any]) -> str:
         return ' and '.join(seq)
     return ', '.join(seq[:-1]) + ', and ' + seq[-1]
 
-def rel_primes(n):
+def rel_primes(n, stop=None):
     n = abs(int(n))
+    if stop == None:
+        stop = n
     if n == 0:
         return None
     rel_primes_list = []
-    if n == 1:
+    if n == 1 and stop == 1:
         return [1]
-    for i in range(1, n):
+    for i in range(1, stop + 1):
         if math.gcd(n,i) == 1:
             rel_primes_list.append(i)
     return rel_primes_list
