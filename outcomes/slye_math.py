@@ -85,7 +85,7 @@ def int_string(place_values=1, excl_first=[0], excl_last=[], wt_0=None, wt_1=Non
     return our_int_string
 
 def dec_string(dec_offset=-1, place_values=1, excl_first=[0], excl_last=[0], wt_0=None, wt_1=None, wt_2=None, wt_3=None, wt_4=None,
-                wt_5=None, wt_6=None, wt_7=None, wt_8=None, wt_9=None, custom_string=None, separator=','):
+                wt_5=None, wt_6=None, wt_7=None, wt_8=None, wt_9=None, custom_string=None, separator=',', remove_trails=True):
     
     dec_offset = int(dec_offset)
 
@@ -95,7 +95,7 @@ def dec_string(dec_offset=-1, place_values=1, excl_first=[0], excl_last=[0], wt_
     if custom_string == None:
         our_int_string = int_string(place_values, excl_first, excl_last, wt_0, wt_1, wt_2, wt_3, wt_4, wt_5, wt_6, wt_7, wt_8, wt_9)
     else:
-        our_int_string = custom_string
+        our_int_string = str(custom_string)
     
     our_int_string = str(our_int_string).replace(',', '')
 
@@ -110,11 +110,14 @@ def dec_string(dec_offset=-1, place_values=1, excl_first=[0], excl_last=[0], wt_
             num_extra_zeros = 1 + abs(dec_offset) - len(whole_part)
             whole_part = '0' * num_extra_zeros + whole_part
         new_dec_part = whole_part[dec_offset:] + dec_part
-        new_dec_part = new_dec_part.rstrip('0')
+        if remove_trails:
+            new_dec_part = new_dec_part.rstrip('0')
         new_whole_part = f'{int(whole_part[:dec_offset]):,}' if whole_part[:dec_offset] != '' else ''
         our_dec_string = new_whole_part + '.' + new_dec_part
     elif dec_offset >= 0:
-        if '.' in our_int_string:
+        if dec_offset == 0 and remove_trails is False:
+            our_dec_string = our_int_string
+        elif '.' in our_int_string:
             whole_part, dec_part = our_int_string.split('.', 1)
             if dec_offset >= len(dec_part):
                 num_extra_zeros = dec_offset - len(dec_part)
@@ -124,7 +127,10 @@ def dec_string(dec_offset=-1, place_values=1, excl_first=[0], excl_last=[0], wt_
         else:
             our_dec_string = f'{int(our_int_string + "0" * dec_offset):,}'
     
-    our_dec_string = our_dec_string.rstrip('.').replace(',', separator)
+    if remove_trails:
+        our_dec_string = our_dec_string.rstrip('.').replace(',', separator)
+    else:
+        our_dec_string = our_dec_string.replace(',', separator)
 
     return our_dec_string
 

@@ -129,5 +129,14 @@
                 I can identify place values in decimal numbers using both numerical notation and English words, and represent decimal numbers using base-ten blocks.
             </description>
         </outcome>
+        
+        <outcome>
+            <title>Decimal Conversions</title>
+            <slug>D2</slug>
+            <path>outcomes/D2</path>
+            <description>
+                I can convert numbers between fractions, decimals, and percents.
+            </description>
+        </outcome>
     </outcomes>
 </bank>

@@ -1,57 +1,45 @@
 import sys
 sys.path.append('/home/slye/mat-106-bank/outcomes/')
 import slye_math as sm
-import math
 import random
 from fractions import Fraction
+from decimal import Decimal
 
-def hard_line_prob():
-            # Gives students a problem where the given is not 1
-            # Still easy enough that the denominator of the requested fraction can be obtained by subdivision of orig denom
 
-            shape = 'line'
-            # Choose from tick locations that have lots of divisors
-            orig_loc = random.choice([12, 16, 18, 20, 24, 28, 30])
+def create_repeating_dec():
+    period = random.randint(1, 2)
+    for i in range(0, 50000):
+        repetend_denom = int('9' * period)
+        repetend_num = random.choice(sm.rel_primes(repetend_denom))
+        repetend_frac = Fraction(repetend_num, repetend_denom)
 
-            # Given numerator must divide tick location, but avoid original tick location itself
-            orig_loc_divisors = sm.divisors(orig_loc)
-            orig_loc_divisors.remove(orig_loc)
-            orig_num = random.choice(orig_loc_divisors)
+        place_val_offset = random.randint(0, 2)
+        non_repeating_digits = int(sm.int_string(place_values=place_val_offset + 1,
+                                                    excl_first=[],
+                                                    excl_last=[],
+                                                    wt_0=0.13, wt_1=0.13, wt_2=0.13, wt_3=0.13, wt_4=0.13))
+        shifter = Fraction(1, 10 ** place_val_offset)
 
-            # Choose denominator that doesn't force us to simplify the fraction, and that prevents whole numbers
-            potential_orig_denoms = sm.rel_primes(orig_num, stop=20)
-            potential_orig_denoms.remove(1)
-            orig_denom = random.choice(potential_orig_denoms)
+        our_fraction = (non_repeating_digits + repetend_frac) * shifter
+        fraction_num, fraction_denom = our_fraction.as_integer_ratio()
+        non_repeating_dec_part = sm.dec_string(-1 * place_val_offset,
+                                                custom_string=non_repeating_digits,
+                                                remove_trails=False)
+        if place_val_offset == 0:
+            non_repeating_dec_part += '.'
 
-            # To be able to subdivide, we need to carefully choose our requested denominator to share a divisor
-            # Kick out 1 in certain cases to prevent edge cases
-            remaining_divisors = sm.divisors(orig_loc / orig_num)
-            if orig_num == 1:
-                remaining_divisors.remove(1)
-            k = random.choice(remaining_divisors)
-            requested_denom = k * orig_denom
-            potential_requested_nums = list(range(1, math.ceil(30 * orig_num * k / orig_loc)))
-            
-            # Prevent requested fraction from equaling given fraction
-            if orig_num * requested_denom % orig_denom == 0:
-                if orig_num * requested_denom // orig_denom in potential_requested_nums:
-                    potential_requested_nums.remove(orig_num * requested_denom // orig_denom)
-            requested_num = random.choice(potential_requested_nums)
+        our_fraction_latex = f'\\dfrac{{{fraction_num}}}{{{fraction_denom}}}'
+        our_decimal_latex = non_repeating_dec_part + f'\\overline{{{repetend_num}}}'
 
-            # Calculate tick mark of requested fraction
-            requested_loc = orig_loc // (orig_num * k) * requested_num
+        output = (our_fraction_latex, our_decimal_latex)
 
-            # Simplifying the fraction for beauty and creating fun cases where requested denom ends up less than given denom
-            requested_num, requested_denom = Fraction(requested_num, requested_denom).as_integer_ratio()
+        if fraction_denom == 9 and fraction_denom > 9:
+            return output
 
-            return shape, orig_loc, orig_num, orig_denom, requested_loc, requested_num, requested_denom
+        if fraction_denom != repetend_denom and fraction_num < 1000 and fraction_denom < 1000:
+            return output
 
-highest_tick = 1
+    return output
 
-for i in range(1,10000):
-    shape, orig_loc, orig_num, orig_denom, requested_loc, requested_num, requested_denom = hard_line_prob()
-    print(f'Given Tick: {orig_loc},\nGiven: {orig_num}/{orig_denom},\nRequested: {requested_num}/{requested_denom}\nFound At: {requested_loc}\n\n')
-    if requested_loc > highest_tick:
-        highest_tick = requested_loc
-
-print(highest_tick)
+n, d, l = create_repeating_dec()
+print(f'Fraction: {n}/{d}\nDecimal: {l}')
