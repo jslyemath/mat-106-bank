@@ -67,20 +67,4 @@
             <p>{{p8_ans}}</p>
         </outtro>
     </knowl>
-    <knowl>
-        <content>
-            <p><m>{{p9_prob}}</m></p>
-        </content>
-        <outtro>
-            <p>{{p9_ans}}</p>
-        </outtro>
-    </knowl>
-    <knowl>
-        <content>
-            <p><m>{{p10_prob}}</m></p>
-        </content>
-        <outtro>
-            <p>{{p10_ans}}</p>
-        </outtro>
-    </knowl>
 </knowl>
