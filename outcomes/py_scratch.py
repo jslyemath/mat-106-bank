@@ -1,43 +1,33 @@
+import sys
+sys.path.append('/home/slye/mat-106-bank/outcomes/')
+import slye_math as sm
 import random
 from fractions import Fraction
 
-# List of tuples containing names and pronouns
-names_and_pronouns = [
-    ('Alex', 'he', 'him', 'his'), ('Blake', 'he', 'him', 'his'), 
-    ('Casey', 'she', 'her', 'hers'), ('Drew', 'he', 'him', 'his'), 
-    ('Elliot', 'he', 'him', 'his'), ('Frankie', 'she', 'her', 'hers'), 
-    ('Gale', 'she', 'her', 'hers'), ('Harper', 'she', 'her', 'hers'), 
-    ('Jordan', 'he', 'him', 'his'), ('Kendall', 'she', 'her', 'hers')
-    # Add more names as needed
-]
-
-def get_random_name_and_pronoun():
-    return random.choice(names_and_pronouns)
-
 # Problem 1: Carlos is organizing a book fair and needs to distribute promotional flyers.
 def problem1():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     total_flyers = random.randint(300, 400)
     flyers_per_classroom = random.randint(20, 30)
     leftover_flyers = random.randint(10, 30)
     flyers_distributed = total_flyers - leftover_flyers
     classrooms = flyers_distributed // flyers_per_classroom
     
-    problem = (f'{name} is organizing a book fair and needs to distribute promotional flyers. '
-               f'{subj_pronoun.capitalize()} prints {total_flyers} flyers and plans to give out {flyers_per_classroom} flyers per classroom. '
-               f'After distributing flyers to all the classrooms, {subj_pronoun} has {leftover_flyers} flyers left. How many classrooms did '
-               f'{subj_pronoun} distribute the flyers to?')
+    problem = (f'{person_a.name} is organizing a book fair and needs to distribute promotional flyers. '
+               f'{person_a.subj_pronoun().capitalize()} prints {total_flyers} flyers and plans to give out {flyers_per_classroom} flyers per classroom. '
+               f'After distributing flyers to all the classrooms, {person_a.subj_pronoun()} has {leftover_flyers} flyers left. How many classrooms did '
+               f'{person_a.subj_pronoun()} distribute the flyers to?')
     
-    solution = (f'To find out how many classrooms {name} distributed the flyers to, we first subtract the leftover flyers from the total number '
+    solution = (f'To find out how many classrooms {person_a.name} distributed the flyers to, we first subtract the leftover flyers from the total number '
                 f'of printed flyers. So, {total_flyers} - {leftover_flyers} gives us {flyers_distributed} flyers that were distributed. Then, '
                 f'we divide this number by the number of flyers per classroom: {flyers_distributed} / {flyers_per_classroom} equals {classrooms}. '
-                f'Therefore, {name} distributed flyers to {classrooms} classrooms.')
+                f'Therefore, {person_a.name} distributed flyers to {classrooms} classrooms.')
     
     return problem, solution
 
 # Problem 2: Sophie is planting a garden.
 def problem2():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     tomato_rows = random.randint(3, 5)
     tomato_plants_per_row = random.randint(10, 20)
     carrot_rows = random.randint(4, 6)
@@ -50,22 +40,22 @@ def problem2():
     total_bean_plants = bean_rows * bean_plants_per_row
     total_plants = total_tomato_plants + total_carrot_plants + total_bean_plants
     
-    problem = (f'{name} is planting a garden. {subj_pronoun.capitalize()} has {tomato_rows} rows, each with {tomato_plants_per_row} tomato plants. '
-               f'{subj_pronoun.capitalize()} also plants {carrot_rows} rows of carrots, each with {carrot_plants_per_row} plants. If {subj_pronoun} plants '
-               f'{bean_rows} more rows of beans with {bean_plants_per_row} plants each, how many plants does {subj_pronoun} have in total?')
+    problem = (f'{person_a.name} is planting a garden. {person_a.subj_pronoun().capitalize()} has {tomato_rows} rows, each with {tomato_plants_per_row} tomato plants. '
+               f'{person_a.subj_pronoun().capitalize()} also plants {carrot_rows} rows of carrots, each with {carrot_plants_per_row} plants. If {person_a.subj_pronoun()} plants '
+               f'{bean_rows} more rows of beans with {bean_plants_per_row} plants each, how many plants does {person_a.subj_pronoun()} have in total?')
     
-    solution = (f'To find the total number of plants {name} has, we start by calculating the total number of tomato plants. '
+    solution = (f'To find the total number of plants {person_a.name} has, we start by calculating the total number of tomato plants. '
                 f'{tomato_rows} rows of tomatoes with {tomato_plants_per_row} plants each give us {total_tomato_plants} tomato plants. '
                 f'Next, we calculate the total number of carrot plants: {carrot_rows} rows with {carrot_plants_per_row} plants each give us {total_carrot_plants} carrot plants. '
                 f'Finally, the total number of bean plants: {bean_rows} rows with {bean_plants_per_row} plants each give us {total_bean_plants} bean plants. '
                 f'Adding these all together, {total_tomato_plants} + {total_carrot_plants} + {total_bean_plants} gives us {total_plants} plants in total. '
-                f'Therefore, {name} has {total_plants} plants in total.')
+                f'Therefore, {person_a.name} has {total_plants} plants in total.')
     
     return problem, solution
 
 # Problem 3: A bakery makes 240 muffins every day.
 def problem3():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     total_muffins = random.randint(200, 300)
     morning_fraction = random.choice([Fraction(2, 5), Fraction(3, 5), Fraction(4, 5)])
     afternoon_fraction = random.choice([Fraction(1, 4), Fraction(1, 3)])
@@ -100,7 +90,7 @@ def problem4():
     bracelets2 = rate2 * hours2
     total_bracelets = bracelets1 + bracelets2
     
-    problem = (f'{name1} and {name2} are making friendship bracelets. {name1} can make {rate1} bracelets per hour, and {subj_pronoun1} works for {hours1} hours. '
+    problem = (f'{name1} and {name2} are making friendship bracelets. {name1} can make {rate1} bracelets per hour, and {person_a.subj_pronoun()1} works for {hours1} hours. '
                f'{name2} makes {rate2} bracelets per hour and works for {hours2} hours. How many bracelets do they make together?')
     
     solution = (f'To find out how many bracelets {name1} and {name2} make together, we start by calculating the number of bracelets {name1} makes. '
@@ -113,7 +103,7 @@ def problem4():
 
 # Problem 5: David is filling a swimming pool.
 def problem5():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     rate = random.randint(100, 200)
     initial_minutes = random.randint(20, 40)
     additional_minutes = random.randint(10, 20)
@@ -122,11 +112,11 @@ def problem5():
     total_intervals = total_minutes // 5
     total_water = total_intervals * rate
     
-    problem = (f'{name} is filling a swimming pool. {subj_pronoun.capitalize()} fills it at a rate of {rate} liters every 5 minutes. '
-               f'After filling it for {initial_minutes} minutes, {subj_pronoun} takes a break and then fills it for another {additional_minutes} minutes. '
+    problem = (f'{person_a.name} is filling a swimming pool. {person_a.subj_pronoun().capitalize()} fills it at a rate of {rate} liters every 5 minutes. '
+               f'After filling it for {initial_minutes} minutes, {person_a.subj_pronoun()} takes a break and then fills it for another {additional_minutes} minutes. '
                f'How many liters of water are in the pool?')
     
-    solution = (f'To find out how many liters of water are in the pool, we first calculate the total time {name} spends filling the pool. '
+    solution = (f'To find out how many liters of water are in the pool, we first calculate the total time {person_a.name} spends filling the pool. '
                 f'{initial_minutes} minutes plus {additional_minutes} minutes gives us a total of {total_minutes} minutes. '
                 f'Next, we calculate the number of 5-minute intervals in the total time: {total_minutes} divided by 5 equals {total_intervals} intervals. '
                 f'Finally, we calculate the total amount of water: {total_intervals} intervals times {rate} liters per interval equals {total_water} liters. '
@@ -137,26 +127,26 @@ def problem5():
 
 # Problem 6: Quinn is planting trees in an orchard.
 def problem6():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     rows = random.randint(3, 7)
     trees_per_row = random.randint(8, 15)
     extra_trees = random.randint(5, 10)
     
     total_trees = (rows * trees_per_row) + extra_trees
     
-    problem = (f'{name} is planting trees in an orchard. {subj_pronoun.capitalize()} plants {rows} rows of trees, with {trees_per_row} trees per row. '
-               f'{subj_pronoun.capitalize()} also plants {extra_trees} extra trees. How many trees does {name} plant in total?')
+    problem = (f'{person_a.name} is planting trees in an orchard. {person_a.subj_pronoun().capitalize()} plants {rows} rows of trees, with {trees_per_row} trees per row. '
+               f'{person_a.subj_pronoun().capitalize()} also plants {extra_trees} extra trees. How many trees does {person_a.name} plant in total?')
     
-    solution = (f'To find out how many trees {name} plants in total, we first calculate the number of trees in the rows. '
+    solution = (f'To find out how many trees {person_a.name} plants in total, we first calculate the number of trees in the rows. '
                 f'{rows} rows multiplied by {trees_per_row} trees per row equals {rows * trees_per_row} trees. '
                 f'Adding the extra trees, {rows * trees_per_row} + {extra_trees} equals {total_trees} trees. '
-                f'Therefore, {name} plants {total_trees} trees in total.')
+                f'Therefore, {person_a.name} plants {total_trees} trees in total.')
     
     return problem, solution
 
 # Problem 7: Jamie is mixing fruit juice.
 def problem7():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     initial_volume = random.randint(2, 5)
     additional_volume = Fraction(random.randint(1, 3), random.randint(2, 4))
     bottles = random.randint(4, 6)
@@ -164,8 +154,8 @@ def problem7():
     total_volume = initial_volume + additional_volume
     volume_per_bottle = total_volume / bottles
     
-    problem = (f'{name} is mixing fruit juice. {subj_pronoun.capitalize()} starts with {initial_volume} liters of juice and adds '
-               f'{additional_volume} liters more. {subj_pronoun.capitalize()} then pours the juice equally into {bottles} bottles. '
+    problem = (f'{person_a.name} is mixing fruit juice. {person_a.subj_pronoun().capitalize()} starts with {initial_volume} liters of juice and adds '
+               f'{additional_volume} liters more. {person_a.subj_pronoun().capitalize()} then pours the juice equally into {bottles} bottles. '
                f'How much juice is in each bottle?')
     
     solution = (f'To find out how much juice is in each bottle, we first calculate the total volume of juice. '
@@ -177,45 +167,45 @@ def problem7():
 
 # Problem 8: Avery is cutting pieces of ribbon.
 def problem8():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     total_ribbon = Fraction(random.randint(8, 12), 1)
     piece_length = Fraction(random.randint(1, 3), random.randint(2, 4))
     
     num_pieces = total_ribbon // piece_length
     leftover_ribbon = total_ribbon % piece_length
     
-    problem = (f'{name} has {total_ribbon} meters of ribbon. {subj_pronoun.capitalize()} cuts pieces that are {piece_length} meters long. '
-               f'How many full pieces can {subj_pronoun} cut and how much ribbon will be left over?')
+    problem = (f'{person_a.name} has {total_ribbon} meters of ribbon. {person_a.subj_pronoun().capitalize()} cuts pieces that are {piece_length} meters long. '
+               f'How many full pieces can {person_a.subj_pronoun()} cut and how much ribbon will be left over?')
     
-    solution = (f'To find out how many full pieces {name} can cut, we divide the total length of the ribbon by the length of each piece. '
+    solution = (f'To find out how many full pieces {person_a.name} can cut, we divide the total length of the ribbon by the length of each piece. '
                 f'{total_ribbon} meters divided by {piece_length} meters per piece equals {num_pieces} full pieces. '
                 f'The leftover ribbon is the remainder of this division, which is {leftover_ribbon} meters. '
-                f'Therefore, {name} can cut {num_pieces} full pieces and will have {leftover_ribbon} meters of ribbon left over.')
+                f'Therefore, {person_a.name} can cut {num_pieces} full pieces and will have {leftover_ribbon} meters of ribbon left over.')
     
     return problem, solution
 
 # Problem 9: Casey is arranging flowers in vases.
 def problem9():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     flowers_per_vase = random.randint(6, 12)
     vases = random.randint(5, 10)
     extra_flowers = random.randint(3, 8)
     
     total_flowers = (flowers_per_vase * vases) + extra_flowers
     
-    problem = (f'{name} is arranging flowers in vases. {subj_pronoun.capitalize()} puts {flowers_per_vase} flowers in each of {vases} vases. '
-               f'{subj_pronoun.capitalize()} also has {extra_flowers} extra flowers. How many flowers does {name} have in total?')
+    problem = (f'{person_a.name} is arranging flowers in vases. {person_a.subj_pronoun().capitalize()} puts {flowers_per_vase} flowers in each of {vases} vases. '
+               f'{person_a.subj_pronoun().capitalize()} also has {extra_flowers} extra flowers. How many flowers does {person_a.name} have in total?')
     
-    solution = (f'To find out how many flowers {name} has in total, we first calculate the number of flowers in the vases. '
+    solution = (f'To find out how many flowers {person_a.name} has in total, we first calculate the number of flowers in the vases. '
                 f'{flowers_per_vase} flowers per vase multiplied by {vases} vases equals {flowers_per_vase * vases} flowers. '
                 f'Adding the extra flowers, {flowers_per_vase * vases} + {extra_flowers} equals {total_flowers} flowers. '
-                f'Therefore, {name} has {total_flowers} flowers in total.')
+                f'Therefore, {person_a.name} has {total_flowers} flowers in total.')
     
     return problem, solution
 
 # Problem 10: Morgan is painting a mural.
 def problem10():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     initial_area = random.randint(20, 30)
     additional_area = random.randint(10, 15)
     paint_cans = random.randint(4, 6)
@@ -223,8 +213,8 @@ def problem10():
     total_area = initial_area + additional_area
     area_per_can = total_area / paint_cans
     
-    problem = (f'{name} is painting a mural. {subj_pronoun.capitalize()} paints an initial area of {initial_area} square meters and then paints '
-               f'an additional {additional_area} square meters. If {subj_pronoun} uses {paint_cans} cans of paint to cover the entire area, '
+    problem = (f'{person_a.name} is painting a mural. {person_a.subj_pronoun().capitalize()} paints an initial area of {initial_area} square meters and then paints '
+               f'an additional {additional_area} square meters. If {person_a.subj_pronoun()} uses {paint_cans} cans of paint to cover the entire area, '
                f'how many square meters does each can of paint cover on average?')
     
     solution = (f'To find out how many square meters each can of paint covers on average, we first calculate the total area painted. '
@@ -236,7 +226,7 @@ def problem10():
 
 # Problem 11: Riley is stacking books.
 def problem11():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     books_per_stack = random.randint(5, 10)
     total_stacks = random.randint(6, 12)
     used_books = random.randint(10, 20)
@@ -244,7 +234,7 @@ def problem11():
     total_books = books_per_stack * total_stacks
     remaining_books = total_books - used_books
     
-    problem = (f'{name} is stacking books in the library. {subj_pronoun.capitalize()} makes stacks of {books_per_stack} books each. '
+    problem = (f'{person_a.name} is stacking books in the library. {person_a.subj_pronoun().capitalize()} makes stacks of {books_per_stack} books each. '
                f'There are {total_stacks} stacks in total. After using {used_books} books for a display, how many books are left in the stacks?')
     
     solution = (f'To find out how many books are left in the stacks, we first calculate the total number of books. '
@@ -256,7 +246,7 @@ def problem11():
 
 # Problem 12: Cameron is filling water bottles.
 def problem12():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     bottles = random.randint(10, 20)
     capacity_per_bottle = random.randint(500, 1000)  # milliliters
     used_capacity = random.randint(2000, 4000)
@@ -264,7 +254,7 @@ def problem12():
     total_capacity = bottles * capacity_per_bottle
     remaining_capacity = total_capacity - used_capacity
     
-    problem = (f'{name} is filling water bottles. Each of the {bottles} bottles can hold {capacity_per_bottle} milliliters of water. '
+    problem = (f'{person_a.name} is filling water bottles. Each of the {bottles} bottles can hold {capacity_per_bottle} milliliters of water. '
                f'After using {used_capacity} milliliters for another purpose, how much water is left in the bottles?')
     
     solution = (f'To find out how much water is left in the bottles, we first calculate the total capacity of all the bottles. '
@@ -276,7 +266,7 @@ def problem12():
 
 # Problem 13: Taylor is organizing chairs for a school event.
 def problem13():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     rows = random.randint(5, 10)
     chairs_per_row = random.randint(10, 20)
     removed_chairs = random.randint(10, 20)
@@ -284,8 +274,8 @@ def problem13():
     total_chairs = rows * chairs_per_row
     remaining_chairs = total_chairs - removed_chairs
     
-    problem = (f'{name} is organizing chairs for a school event. There are {rows} rows of chairs, with {chairs_per_row} chairs per row. '
-               f'If {subj_pronoun} removes {removed_chairs} chairs for another activity, how many chairs are left?')
+    problem = (f'{person_a.name} is organizing chairs for a school event. There are {rows} rows of chairs, with {chairs_per_row} chairs per row. '
+               f'If {person_a.subj_pronoun()} removes {removed_chairs} chairs for another activity, how many chairs are left?')
     
     solution = (f'To find out how many chairs are left, we first calculate the total number of chairs. '
                 f'{rows} rows multiplied by {chairs_per_row} chairs per row equals {total_chairs} chairs. '
@@ -296,7 +286,7 @@ def problem13():
 
 # Problem 14: Jordan is preparing gift bags for a party.
 def problem14():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     bags = random.randint(10, 20)
     items_per_bag = random.randint(5, 10)
     additional_items = random.randint(15, 25)
@@ -304,8 +294,8 @@ def problem14():
     total_items = bags * items_per_bag
     new_total_items = total_items + additional_items
     
-    problem = (f'{name} is preparing gift bags for a party. {subj_pronoun.capitalize()} makes {bags} bags, each containing {items_per_bag} items. '
-               f'If {subj_pronoun} adds {additional_items} more items to the bags, how many items are there in total?')
+    problem = (f'{person_a.name} is preparing gift bags for a party. {person_a.subj_pronoun().capitalize()} makes {bags} bags, each containing {items_per_bag} items. '
+               f'If {person_a.subj_pronoun()} adds {additional_items} more items to the bags, how many items are there in total?')
     
     solution = (f'To find out how many items are there in total, we first calculate the initial number of items. '
                 f'{bags} bags multiplied by {items_per_bag} items per bag equals {total_items} items. '
@@ -316,7 +306,7 @@ def problem14():
 
 # Problem 15: Avery is baking cookies for a bake sale.
 def problem15():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     batches = random.randint(5, 10)
     cookies_per_batch = random.randint(12, 24)
     broken_cookies = random.randint(5, 15)
@@ -324,8 +314,8 @@ def problem15():
     total_cookies = batches * cookies_per_batch
     remaining_cookies = total_cookies - broken_cookies
     
-    problem = (f'{name} is baking cookies for a bake sale. {subj_pronoun.capitalize()} bakes {batches} batches of cookies, with {cookies_per_batch} cookies per batch. '
-               f'If {subj_pronoun} breaks {broken_cookies} cookies, how many cookies are left for the sale?')
+    problem = (f'{person_a.name} is baking cookies for a bake sale. {person_a.subj_pronoun().capitalize()} bakes {batches} batches of cookies, with {cookies_per_batch} cookies per batch. '
+               f'If {person_a.subj_pronoun()} breaks {broken_cookies} cookies, how many cookies are left for the sale?')
     
     solution = (f'To find out how many cookies are left for the sale, we first calculate the total number of cookies. '
                 f'{batches} batches multiplied by {cookies_per_batch} cookies per batch equals {total_cookies} cookies. '
@@ -335,7 +325,7 @@ def problem15():
     return problem, solution
 
 def problem16():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     plan1_cost = random.randint(20, 40)
     plan2_cost = random.randint(25, 45)
     plan2_discount = random.randint(5, 15)
@@ -347,9 +337,9 @@ def problem16():
     more_expensive_plan = 'Plan 1' if total_cost_plan1 > total_cost_plan2 else 'Plan 2'
     cost_difference = abs(total_cost_plan1 - total_cost_plan2)
     
-    problem = (f'{name} is comparing the cost of two phone plans. Plan 1 costs ${plan1_cost} per month. '
+    problem = (f'{person_a.name} is comparing the cost of two phone plans. Plan 1 costs ${plan1_cost} per month. '
                f'Plan 2 costs ${plan2_cost} per month, but there is a ${plan2_discount} discount applied once after signing up. '
-               f'If {name} needs the plan for {months} months, which plan is more expensive and by how much?')
+               f'If {person_a.name} needs the plan for {months} months, which plan is more expensive and by how much?')
     
     solution = (f'To find out which plan is more expensive, we first calculate the total cost for each plan. '
                 f'The total cost for Plan 1 is {plan1_cost} dollars per month multiplied by {months} months, which equals ${total_cost_plan1}. '
@@ -360,7 +350,7 @@ def problem16():
 
 # Problem 17: Kendall is making fruit punch.
 def problem17():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     fruit_juice_liters = random.randint(3, 6)
     soda_liters = Fraction(random.randint(2, 4), random.randint(1, 3))
     water_liters = Fraction(random.randint(1, 3), random.randint(1, 2))
@@ -369,20 +359,20 @@ def problem17():
     total_liters = fruit_juice_liters + soda_liters + water_liters
     total_cups = total_liters * cups_per_liter
     
-    problem = (f'{name} is making fruit punch. {subj_pronoun.capitalize()} mixes {fruit_juice_liters} liters of fruit juice, '
+    problem = (f'{person_a.name} is making fruit punch. {person_a.subj_pronoun().capitalize()} mixes {fruit_juice_liters} liters of fruit juice, '
                f'{soda_liters} liters of soda, and {water_liters} liters of water. If each liter of punch can fill 4 cups, '
-               f'how many cups of punch does {name} make in total?')
+               f'how many cups of punch does {person_a.name} make in total?')
     
-    solution = (f'To find out how many cups of punch {name} makes in total, we first calculate the total volume of the punch. '
+    solution = (f'To find out how many cups of punch {person_a.name} makes in total, we first calculate the total volume of the punch. '
                 f'{fruit_juice_liters} liters of fruit juice plus {soda_liters} liters of soda plus {water_liters} liters of water equals {total_liters} liters. '
                 f'Since each liter fills 4 cups, we multiply {total_liters} liters by 4 cups per liter, which equals {total_cups} cups of punch. '
-                f'Therefore, {name} makes {total_cups} cups of punch in total.')
+                f'Therefore, {person_a.name} makes {total_cups} cups of punch in total.')
     
     return problem, solution
 
 # Problem 18: Dakota is saving money for a bike.
 def problem18():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     initial_savings = random.randint(50, 100)
     weekly_savings = random.randint(10, 20)
     weeks = random.randint(8, 16)
@@ -392,25 +382,25 @@ def problem18():
     enough_savings = total_savings >= bike_cost
     extra_needed = max(0, bike_cost - total_savings)
     
-    problem = (f'{name} is saving money to buy a bike that costs ${bike_cost}. {subj_pronoun.capitalize()} starts with ${initial_savings} and saves '
-               f'${weekly_savings} each week. After {weeks} weeks, does {name} have enough money to buy the bike? If not, how much more does {subj_pronoun} need?')
+    problem = (f'{person_a.name} is saving money to buy a bike that costs ${bike_cost}. {person_a.subj_pronoun().capitalize()} starts with ${initial_savings} and saves '
+               f'${weekly_savings} each week. After {weeks} weeks, does {person_a.name} have enough money to buy the bike? If not, how much more does {person_a.subj_pronoun()} need?')
     
-    solution = (f'To find out if {name} has enough money, we first calculate the total savings. '
+    solution = (f'To find out if {person_a.name} has enough money, we first calculate the total savings. '
                 f'{initial_savings} dollars plus {weekly_savings} dollars per week multiplied by {weeks} weeks equals ${total_savings}. '
-                f'The cost of the bike is ${bike_cost}. Since {name} has {"enough" if enough_savings else "not enough"} money, {subj_pronoun} '
-                f'{"can" if enough_savings else "cannot"} buy the bike. If not, {subj_pronoun} needs ${extra_needed} more.')
+                f'The cost of the bike is ${bike_cost}. Since {person_a.name} has {"enough" if enough_savings else "not enough"} money, {person_a.subj_pronoun()} '
+                f'{"can" if enough_savings else "cannot"} buy the bike. If not, {person_a.subj_pronoun()} needs ${extra_needed} more.')
     
     return problem, solution
 
 # Problem 19: Jordan is organizing a charity run.
 def problem19():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     total_distance = random.randint(10, 20)
     first_leg = Fraction(random.randint(1, 3), 2)
     second_leg = Fraction(random.randint(2, 4), 3)
     remaining_distance = total_distance - (first_leg + second_leg)
     
-    problem = (f'{name} is organizing a charity run. The total distance is {total_distance} kilometers. '
+    problem = (f'{person_a.name} is organizing a charity run. The total distance is {total_distance} kilometers. '
                f'The first leg of the run is {first_leg} kilometers, and the second leg is {second_leg} kilometers. '
                f'How many kilometers are left for the remaining distance?')
     
@@ -423,7 +413,7 @@ def problem19():
 
 # Problem 20: Skyler is baking pies.
 def problem20():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     pies = random.randint(3, 6)
     slices_per_pie = random.randint(6, 8)
     eaten_slices = random.randint(10, 15)
@@ -431,8 +421,8 @@ def problem20():
     total_slices = pies * slices_per_pie
     remaining_slices = total_slices - eaten_slices
     
-    problem = (f'{name} is baking pies for a party. {subj_pronoun.capitalize()} bakes {pies} pies, each cut into {slices_per_pie} slices. '
-               f'If {subj_pronoun} and {poss_pronoun} friends eat {eaten_slices} slices, how many slices are left?')
+    problem = (f'{person_a.name} is baking pies for a party. {person_a.subj_pronoun().capitalize()} bakes {pies} pies, each cut into {slices_per_pie} slices. '
+               f'If {person_a.subj_pronoun()} and {person_a.poss_adjective()} friends eat {eaten_slices} slices, how many slices are left?')
     
     solution = (f'To find out how many slices are left, we first calculate the total number of slices. '
                 f'{pies} pies multiplied by {slices_per_pie} slices per pie equals {total_slices} slices. '
@@ -443,7 +433,7 @@ def problem20():
 
 # Problem 21: Samantha's mom is trying to find a contractor to work on their house.
 def problem21():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     contractor1_rate = random.randint(50, 80)
     contractor2_rate = random.randint(55, 85)
     discount = random.randint(30, 50)
@@ -453,9 +443,9 @@ def problem21():
     contractor2_cost = (contractor2_rate * hours) - discount
     cost_difference = abs(contractor1_cost - contractor2_cost)
 
-    problem = (f'{name}\'s mom is trying to find a contractor to work on their house. The first contractor charges ${contractor1_rate} per hour. '
+    problem = (f'{person_a.name}\'s mom is trying to find a contractor to work on their house. The first contractor charges ${contractor1_rate} per hour. '
                f'The second contractor charges ${contractor2_rate} per hour, but there is a ${discount} discount on the total bill if chosen. '
-               f'If {poss_pronoun} mom needs the contractor to work for {hours} hours, how much more will the total bill come to if they choose the second contractor instead of the first?')
+               f'If {person_a.poss_adjective()} mom needs the contractor to work for {hours} hours, how much more will the total bill come to if they choose the second contractor instead of the first?')
 
     solution = (f'To find the total cost for each contractor, we multiply the hourly rate by the number of hours needed. '
                 f'The total cost for the first contractor is ${contractor1_rate} per hour multiplied by {hours} hours, which equals ${contractor1_cost}. '
@@ -466,7 +456,7 @@ def problem21():
 
 # Problem 22: Katrina runs a small cookie stand every weekend.
 def problem22():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     trays_initial = random.randint(15, 25)
     cookies_per_tray = random.randint(10, 15)
     sold_friday = random.randint(80, 120)
@@ -479,22 +469,22 @@ def problem22():
     total_cookies = initial_cookies + extra_cookies
     remaining_cookies = total_cookies - (sold_friday + sold_saturday + sold_sunday)
 
-    problem = (f'{name} runs a small cookie stand every weekend. This weekend, {subj_pronoun} started by baking {trays_initial} trays of cookies. '
-               f'Each tray fits {cookies_per_tray} cookies at a time. On Friday, {subj_pronoun} sold {sold_friday} cookies. So, {subj_pronoun} decided to make {extra_trays} more trays of cookies on Saturday morning. '
-               f'{subj_pronoun} sold {sold_saturday} more cookies on Saturday, and {sold_sunday} more cookies on Sunday. {subj_pronoun} decides to bring the extra remaining cookies to school to share with {poss_pronoun} class on Monday. '
-               f'How many cookies does {subj_pronoun} have to share with {poss_pronoun} class?')
+    problem = (f'{person_a.name} runs a small cookie stand every weekend. This weekend, {person_a.subj_pronoun()} started by baking {trays_initial} trays of cookies. '
+               f'Each tray fits {cookies_per_tray} cookies at a time. On Friday, {person_a.subj_pronoun()} sold {sold_friday} cookies. So, {person_a.subj_pronoun()} decided to make {extra_trays} more trays of cookies on Saturday morning. '
+               f'{person_a.subj_pronoun()} sold {sold_saturday} more cookies on Saturday, and {sold_sunday} more cookies on Sunday. {person_a.subj_pronoun()} decides to bring the extra remaining cookies to school to share with {person_a.poss_adjective()} class on Monday. '
+               f'How many cookies does {person_a.subj_pronoun()} have to share with {person_a.poss_adjective()} class?')
 
-    solution = (f'To find out how many cookies {name} has to share with {poss_pronoun} class, we first calculate the total number of cookies baked. '
+    solution = (f'To find out how many cookies {person_a.name} has to share with {person_a.poss_adjective()} class, we first calculate the total number of cookies baked. '
                 f'{trays_initial} trays multiplied by {cookies_per_tray} cookies per tray equals {initial_cookies} cookies. '
-                f'Then, {subj_pronoun} baked {extra_trays} more trays of cookies, which adds another {extra_cookies} cookies. '
+                f'Then, {person_a.subj_pronoun()} baked {extra_trays} more trays of cookies, which adds another {extra_cookies} cookies. '
                 f'The total number of cookies is {total_cookies}. Subtracting the cookies sold on Friday, Saturday, and Sunday, which totals {sold_friday + sold_saturday + sold_sunday}, '
-                f'there are {remaining_cookies} cookies left. Therefore, {name} has {remaining_cookies} cookies to share with {poss_pronoun} class.')
+                f'there are {remaining_cookies} cookies left. Therefore, {person_a.name} has {remaining_cookies} cookies to share with {person_a.poss_adjective()} class.')
 
     return problem, solution
 
 # Problem 23: Cassie is making some Christmas decorations with twine.
 def problem23():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     spool1 = random.randint(1, 3)
     spool2 = Fraction(random.randint(1, 3), random.randint(2, 4))
     project1 = Fraction(random.randint(1, 2), random.randint(2, 4))
@@ -504,32 +494,32 @@ def problem23():
     total_needed = project1 + project2 + project3
     has_enough = total_twine >= total_needed
 
-    problem = (f'{name} is making some Christmas decorations with twine, but {subj_pronoun} is running out of twine to use! {subj_pronoun} measures {poss_pronoun} remaining twine before starting {poss_pronoun} projects. '
-               f'{subj_pronoun} has {spool1} ft of twine on one spool, and {spool2} ft of twine on another spool. {poss_pronoun} first project requires {project1} ft of twine, '
-               f'{poss_pronoun} second project requires {project2} ft, and {poss_pronoun} third project requires {project3} ft. Will {name} have enough twine to make all three projects? Why or why not?')
+    problem = (f'{person_a.name} is making some Christmas decorations with twine, but {person_a.subj_pronoun()} is running out of twine to use! {person_a.subj_pronoun()} measures {person_a.poss_adjective()} remaining twine before starting {person_a.poss_adjective()} projects. '
+               f'{person_a.subj_pronoun()} has {spool1} ft of twine on one spool, and {spool2} ft of twine on another spool. {person_a.poss_adjective()} first project requires {project1} ft of twine, '
+               f'{person_a.poss_adjective()} second project requires {project2} ft, and {person_a.poss_adjective()} third project requires {project3} ft. Will {person_a.name} have enough twine to make all three projects? Why or why not?')
 
-    solution = (f'To find out if {name} has enough twine to complete all three projects, we first calculate the total amount of twine available. '
+    solution = (f'To find out if {person_a.name} has enough twine to complete all three projects, we first calculate the total amount of twine available. '
                 f'{spool1} ft plus {spool2} ft equals {total_twine} ft of twine. Then, we add up the amount of twine needed for each project. '
                 f'{project1} ft plus {project2} ft plus {project3} ft equals {total_needed} ft of twine needed. '
-                f'{name} {"has" if has_enough else "does not have"} enough twine to complete all three projects because {subj_pronoun} needs {total_needed} ft but only has {total_twine} ft.')
+                f'{person_a.name} {"has" if has_enough else "does not have"} enough twine to complete all three projects because {person_a.subj_pronoun()} needs {total_needed} ft but only has {total_twine} ft.')
 
     return problem, solution
 
 # Problem 24: Kristi is walking down a straight road from her house to the market.
 def problem24():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     distance1 = Fraction(random.randint(1, 3), random.randint(3, 5))
     distance2 = Fraction(random.randint(1, 2), random.randint(4, 6))
     backtrack = Fraction(random.randint(1, 2), random.randint(4, 8))
     total_distance = distance1 + distance2 - backtrack
 
-    problem = (f'{name} is walking down a straight road from {poss_pronoun} house to the market. {subj_pronoun.capitalize()} walks {distance1} mi. before taking a rest. '
-               f'Then, {subj_pronoun} keeps walking another {distance2} mi. At that point, {subj_pronoun} realizes that {subj_pronoun} already walked past the market, and backtracks {backtrack} mi. to get to the market. '
-               f'How far is it from {name}\'s house to the market?')
+    problem = (f'{person_a.name} is walking down a straight road from {person_a.poss_adjective()} house to the market. {person_a.subj_pronoun().capitalize()} walks {distance1} mi. before taking a rest. '
+               f'Then, {person_a.subj_pronoun()} keeps walking another {distance2} mi. At that point, {person_a.subj_pronoun()} realizes that {person_a.subj_pronoun()} already walked past the market, and backtracks {backtrack} mi. to get to the market. '
+               f'How far is it from {person_a.name}\'s house to the market?')
 
-    solution = (f'To find out the total distance from {name}\'s house to the market, we add the distances {subj_pronoun} walked and then subtract the distance {subj_pronoun} backtracked. '
+    solution = (f'To find out the total distance from {person_a.name}\'s house to the market, we add the distances {person_a.subj_pronoun()} walked and then subtract the distance {person_a.subj_pronoun()} backtracked. '
                 f'{distance1} mi. plus {distance2} mi. equals {distance1 + distance2} mi. Then, subtracting the {backtrack} mi. backtracked, we get {total_distance} mi. '
-                f'Therefore, the total distance from {name}\'s house to the market is {total_distance} mi.')
+                f'Therefore, the total distance from {person_a.name}\'s house to the market is {total_distance} mi.')
 
     return problem, solution
 
@@ -571,7 +561,7 @@ def problem26():
 
 # Problem 27: Ally is walking down a straight hallway from her classroom to the bathroom.
 def problem27():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     art_room_distance = random.randint(100, 150)
     music_room_distance_fraction = Fraction(random.randint(1, 3), random.randint(3, 5))
     gym_distance = random.randint(300, 400)
@@ -580,14 +570,14 @@ def problem27():
     music_room_distance = music_room_distance_fraction * gym_distance
     classroom_to_bathroom_distance = art_room_distance + music_room_distance + bathroom_distance
 
-    problem = (f'{name} is walking down a straight hallway from {poss_pronoun} classroom to the bathroom. {poss_pronoun.capitalize()} classroom is at the very end of the hall. '
-               f'The art room is {art_room_distance} feet from {poss_pronoun} classroom. The music room is {music_room_distance_fraction} of the way from the art room to the gym. '
-               f'It is another {bathroom_distance} feet from the music room to get to the bathroom. If the gym is {gym_distance} feet from {poss_pronoun} classroom, how far is it from {poss_pronoun} classroom to the bathroom?')
+    problem = (f'{person_a.name} is walking down a straight hallway from {person_a.poss_adjective()} classroom to the bathroom. {person_a.poss_adjective().capitalize()} classroom is at the very end of the hall. '
+               f'The art room is {art_room_distance} feet from {person_a.poss_adjective()} classroom. The music room is {music_room_distance_fraction} of the way from the art room to the gym. '
+               f'It is another {bathroom_distance} feet from the music room to get to the bathroom. If the gym is {gym_distance} feet from {person_a.poss_adjective()} classroom, how far is it from {person_a.poss_adjective()} classroom to the bathroom?')
 
-    solution = (f'To find out how far it is from {name}\'s classroom to the bathroom, we first calculate the distance from the art room to the music room. '
+    solution = (f'To find out how far it is from {person_a.name}\'s classroom to the bathroom, we first calculate the distance from the art room to the music room. '
                 f'The music room is {music_room_distance_fraction} of the distance from the art room to the gym, which is {music_room_distance} feet. '
                 f'Adding the distances, {art_room_distance} feet plus {music_room_distance} feet plus {bathroom_distance} feet, we get {classroom_to_bathroom_distance} feet. '
-                f'Therefore, the distance from {name}\'s classroom to the bathroom is {classroom_to_bathroom_distance} feet.')
+                f'Therefore, the distance from {person_a.name}\'s classroom to the bathroom is {classroom_to_bathroom_distance} feet.')
 
     return problem, solution
 
@@ -647,7 +637,7 @@ def problem29():
 
 # Problem 30: Greg is working hard to make money in order to play his favorite arcade game.
 def problem30():
-    name, subj_pronoun, obj_pronoun, poss_pronoun = get_random_name_and_pronoun()
+    person_a = sm.random_person()
     play_cost = 2
     piggy_bank = random.randint(5, 15)
     cards_price = 5
@@ -658,15 +648,15 @@ def problem30():
     total_money = piggy_bank + money_earned
     full_games = total_money // play_cost
 
-    problem = (f'{name} is working hard to make money in order to play {poss_pronoun} favorite arcade game. Each individual play session costs ${play_cost}. '
-               f'Right now, {subj_pronoun} has ${piggy_bank} in {poss_pronoun} piggy bank. To raise money, {subj_pronoun} is selling Pokemon cards: '
-               f'${cards_price} for every {cards_per_sale} cards. If {name} sells {cards_sold} cards, how many full games of {poss_pronoun} favorite arcade game can {subj_pronoun} play?')
+    problem = (f'{person_a.name} is working hard to make money in order to play {person_a.poss_adjective()} favorite arcade game. Each individual play session costs ${play_cost}. '
+               f'Right now, {person_a.subj_pronoun()} has ${piggy_bank} in {person_a.poss_adjective()} piggy bank. To raise money, {person_a.subj_pronoun()} is selling Pokemon cards: '
+               f'${cards_price} for every {cards_per_sale} cards. If {person_a.name} sells {cards_sold} cards, how many full games of {person_a.poss_adjective()} favorite arcade game can {person_a.subj_pronoun()} play?')
 
-    solution = (f'To find out how many full games {name} can play, we first calculate the money earned from selling cards. '
+    solution = (f'To find out how many full games {person_a.name} can play, we first calculate the money earned from selling cards. '
                 f'{cards_sold} cards divided by {cards_per_sale} cards per sale equals {cards_sold // cards_per_sale} sales. '
                 f'Multiplying this by ${cards_price} per sale, we get ${money_earned}. Adding this to the ${piggy_bank} already in the piggy bank, '
                 f'we get a total of ${total_money}. Dividing this by the cost per game, ${play_cost}, we get {full_games} full games. '
-                f'Therefore, {name} can play {full_games} full games of {poss_pronoun} favorite arcade game.')
+                f'Therefore, {person_a.name} can play {full_games} full games of {person_a.poss_adjective()} favorite arcade game.')
 
     return problem, solution
 

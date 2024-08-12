@@ -32,6 +32,15 @@
         </outcome>
         
         <outcome>
+            <title>Generating Appropriate Word Problems</title>
+            <slug>W4</slug>
+            <path>outcomes/W4</path>
+            <description>
+                I can generate elementary word problems most suitable for each of the mental models of addition, subtraction, multiplication, and division.
+            </description>
+        </outcome>
+        
+        <outcome>
             <title>Base-b Multiplication Algorithms</title>
             <slug>W5</slug>
             <path>outcomes/W5</path>
