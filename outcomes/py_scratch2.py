@@ -5,14 +5,11 @@ import random
 from fractions import Fraction
 from decimal import Decimal, localcontext, ROUND_DOWN
 
-orig_frac_dec_str = '0.4821'
+double_count = 0
+for i in range(1,10000):
+    a = sm.random_person()
+    b = sm.random_person(avoid=a)
+    if a.name == b.name:
+        double_count += 1
 
-quantize_places = 4
-transposeds = []
-for i in range(2, quantize_places + 1):
-    swap_list = list(orig_frac_dec_str)
-    swap_list[i], swap_list[i + 1] = swap_list[i + 1], swap_list[i]
-    transposed = ''.join(swap_list)
-    transposeds.append(transposed)
-
-print(transposeds)
+print(double_count)
