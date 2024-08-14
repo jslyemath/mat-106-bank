@@ -147,5 +147,14 @@
                 I can convert numbers between fractions, decimals, and percents.
             </description>
         </outcome>
+        
+        <outcome>
+            <title>Ordering Rational Numbers</title>
+            <slug>D3</slug>
+            <path>outcomes/D3</path>
+            <description>
+                I can order any rational numbers, including decimals, from least to greatest.
+            </description>
+        </outcome>
     </outcomes>
 </bank>

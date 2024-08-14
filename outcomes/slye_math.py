@@ -1,6 +1,7 @@
 import random
 import math
 from fractions import Fraction
+from decimal import Decimal
 from typing import Any, List
 
 
@@ -74,6 +75,19 @@ def mixed_number(x):
     w = i // d
     n = i % d
     return sign_x * w, Fraction(n, d).numerator, Fraction(n, d).denominator 
+
+def dec(x):
+    if type(x) == Decimal:
+        return x
+    if type(x) == Fraction:
+        return Decimal(x.numerator) / Decimal(x.denominator)
+    else:
+        return Decimal(str(x))
+
+def frac_to_latex(f, dfrac=True):
+    f = Fraction(f)
+    frac_type = 'dfrac' if dfrac else 'frac'
+    return (f'\\{frac_type}{{{f.numerator}}}{{{f.denominator}}}')
 
 def is_iterable(obj):
     try:
@@ -298,7 +312,7 @@ def readable_list(seq: List[Any]) -> str:
         return ' and '.join(seq)
     return ', '.join(seq[:-1]) + ', and ' + seq[-1]
 
-def rel_primes(n, stop=None):
+def rel_primes(n, stop=None, include_1=True):
     n = abs(int(n))
     if stop == None:
         stop = n
@@ -306,10 +320,15 @@ def rel_primes(n, stop=None):
         return None
     rel_primes_list = []
     if n == 1 and stop == 1:
-        return [1]
+        if include_1:
+            return [1]
+        else:
+            return None
     for i in range(1, stop + 1):
         if math.gcd(n,i) == 1:
             rel_primes_list.append(i)
+    if not include_1:
+        rel_primes_list.remove(1)
     return rel_primes_list
 
 def divisors(n):
