@@ -10,17 +10,17 @@ class Generator(BaseGenerator):
         def bab_modern():
             modern = random.choice(range(3501, 162000))
             bab = sm.to_simple_babylonian(modern)
-            return bab, modern, 'ancient Babylonian'
+            return f'\\Large {bab}', modern, 'ancient Babylonian'
 
         def rom_modern():
             modern = int(sm.int_string(4, (0, 4, 5, 6, 7, 8, 9), wt_0=.03, wt_4=.2, wt_6=.2, wt_9=.2))
             rom = sm.to_roman(modern)
-            return rom, modern, 'Roman'
+            return f'\\text{{{rom}}}', modern, 'Roman'
 
         def egy_modern():
             modern = random.choice(range(100000, 4000000))
             egy = sm.to_egyptian(modern)
-            return egy, modern, 'ancient Egyptian'
+            return f'\\Huge {egy}', modern, 'ancient Egyptian'
 
         other_system = random.choice([rom_modern, egy_modern])
         chosen_systems = [bab_modern, other_system]

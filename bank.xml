@@ -2,8 +2,16 @@
 <bank xmlns="https://checkit.clontz.org" version="0.2">
     <title>MAT 106 - Number Systems and Operations - CheckIt Bank</title>
     <slug>mat-106-bank</slug>
-    <url>https://checkit.clontz.org</url>
+    <url>https://jslyemath.github.io/mat-106-bank</url>
     <outcomes>
+        <outcome>
+            <title>Analyzing Student Work</title>
+            <slug>G1</slug>
+            <path>outcomes/G1</path>
+            <description>
+                I can identify hypothetical student work as correct or incorrect, analyze the reasoning for incorrect mistakes, and make appropriate suggestions for improvement.
+            </description>
+        </outcome>
         <outcome>
             <title>Ancient Numeration Systems</title>
             <slug>W1</slug>
