@@ -9,7 +9,7 @@
 
     <knowl>
         <content>
-            <p>What is incorrect about the work shown here? (Identify every incorrect step, not just the first.)</p>
+            <p>What is incorrect about the work shown above? (Identify every incorrect step, not just the first.)</p>
         </content>
         <outtro>
             <p>{{incorrect}}</p>
