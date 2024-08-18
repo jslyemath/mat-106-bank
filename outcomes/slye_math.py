@@ -67,14 +67,43 @@ def sign(x):
     else:
         return int(Fraction(x) / abs(Fraction(x)))
     
-def mixed_number(x):
-    sign_x = sign(x)
-    x = abs(Fraction(x))
-    d = x.denominator
-    i = x.numerator
+def frac_to_latex(f, dfrac=True):
+    f = Fraction(f)
+    frac_type = 'dfrac' if dfrac else 'frac'
+    return f'\\{frac_type}{{{f.numerator}}}{{{f.denominator}}}'
+
+def mixed_number(f, format=None):
+    sign_x = sign(f)
+    f = abs(Fraction(f))
+    d = f.denominator
+    i = f.numerator
     w = i // d
     n = i % d
-    return sign_x * w, Fraction(n, d).numerator, Fraction(n, d).denominator 
+    final_whole = sign_x * w
+    final_numerator = Fraction(n, d).numerator
+    final_denominator = Fraction(n, d).denominator
+    if f == Fraction(0,1):
+        text_final_whole = '0'
+    elif final_whole == 0:
+        text_final_whole = ''
+    else:
+        text_final_whole = f'{final_whole}'
+    space = '' if text_final_whole == '' else ' '
+
+    match format:
+        case 'latex':
+            if final_numerator == 0:
+                final_formatted = f'{text_final_whole}'
+            else:
+                final_formatted = f'{text_final_whole}{space}{frac_to_latex(Fraction(n,d), dfrac=False)}'
+        case 'plain':
+            if final_numerator == 0:
+                final_formatted = f'{text_final_whole}'
+            else:
+                final_formatted = f'{text_final_whole}{space}{final_numerator}/{final_denominator}'
+        case _:
+            final_formatted = (final_whole, final_numerator, final_denominator)
+    return final_formatted
 
 def dec(x):
     if type(x) == Decimal:
@@ -83,11 +112,6 @@ def dec(x):
         return Decimal(x.numerator) / Decimal(x.denominator)
     else:
         return Decimal(str(x))
-
-def frac_to_latex(f, dfrac=True):
-    f = Fraction(f)
-    frac_type = 'dfrac' if dfrac else 'frac'
-    return (f'\\{frac_type}{{{f.numerator}}}{{{f.denominator}}}')
 
 def is_iterable(obj):
     try:
@@ -353,10 +377,32 @@ def random_person(gender=None, avoid=[]):
             avoid_names.append(x.name)
         else:
             avoid_names.append(str(x))
-    names_and_genders = (('Noah', 'm'), ('Liam', 'm'), ('Jacob', 'm'), ('William', 'm'), ('Mason', 'm'), ('Ethan', 'm'), ('Michael', 'm'), ('Alexander', 'm'), ('James', 'm'), ('Elijah', 'm'), ('Benjamin', 'm'), ('Daniel', 'm'), ('Aiden', 'm'), ('Logan', 'm'), ('Jayden', 'm'), ('Matthew', 'm'), ('Lucas', 'm'), ('David', 'm'), ('Jackson', 'm'), ('Joseph', 'm'), ('Anthony', 'm'), ('Samuel', 'm'), ('Joshua', 'm'), ('Gabriel', 'm'), ('Andrew', 'm'), ('John', 'm'), ('Christopher', 'm'), ('Oliver', 'm'), ('Dylan', 'm'), ('Carter', 'm'), ('Isaac', 'm'), ('Luke', 'm'), ('Henry', 'm'), ('Owen', 'm'), ('Ryan', 'm'), ('Nathan', 'm'), ('Wyatt', 'm'), ('Caleb', 'm'), ('Sebastian', 'm'), ('Jack', 'm'), ('Christian', 'm'), ('Jonathan', 'm'), ('Julian', 'm'), ('Landon', 'm'), ('Levi', 'm'), ('Isaiah', 'm'), ('Hunter', 'm'), ('Aaron', 'm'), ('Thomas', 'm'), ('Charles', 'm'), ('Eli', 'm'), ('Jaxon', 'm'), ('Connor', 'm'), ('Nicholas', 'm'), ('Jeremiah', 'm'), ('Grayson', 'm'), ('Cameron', 'm'), ('Brayden', 'm'), ('Adrian', 'm'), ('Evan', 'm'), ('Jordan', 'm'), ('Josiah', 'm'), ('Angel', 'm'), ('Robert', 'm'), ('Gavin', 'm'), ('Tyler', 'm'), ('Austin', 'm'), ('Colton', 'm'), ('Jose', 'm'), ('Dominic', 'm'), ('Brandon', 'm'), ('Ian', 'm'), ('Lincoln', 'm'), ('Hudson', 'm'), ('Kevin', 'm'), ('Zachary', 'm'), ('Adam', 'm'), ('Mateo', 'm'), ('Jason', 'm'), ('Chase', 'm'), ('Nolan', 'm'), ('Ayden', 'm'), ('Cooper', 'm'), ('Parker', 'm'), ('Xavier', 'm'), ('Asher', 'm'), ('Carson', 'm'), ('Jace', 'm'), ('Easton', 'm'), ('Justin', 'm'), ('Leo', 'm'), ('Bentley', 'm'), ('Jaxson', 'm'), ('Nathaniel', 'm'), ('Blake', 'm'), ('Elias', 'm'), ('Theodore', 'm'), ('Kayden', 'm'), ('Luis', 'm'), ('Tristan', 'm'), ('Ezra', 'm'), ('Bryson', 'm'), ('Juan', 'm'), ('Brody', 'm'), ('Vincent', 'm'), ('Micah', 'm'), ('Miles', 'm'), ('Santiago', 'm'), ('Cole', 'm'), ('Ryder', 'm'), ('Carlos', 'm'), ('Damian', 'm'), ('Leonardo', 'm'), ('Roman', 'm'), ('Max', 'm'), ('Sawyer', 'm'), ('Jesus', 'm'), ('Diego', 'm'), ('Greyson', 'm'), ('Alex', 'm'), ('Maxwell', 'm'), ('Axel', 'm'), ('Eric', 'm'), ('Wesley', 'm'), ('Declan', 'm'), ('Giovanni', 'm'), ('Ezekiel', 'm'), ('Braxton', 'm'), ('Ashton', 'm'), ('Ivan', 'm'), ('Hayden', 'm'), ('Camden', 'm'), ('Silas', 'm'), ('Bryce', 'm'), ('Weston', 'm'), ('Harrison', 'm'), ('Jameson', 'm'), ('George', 'm'), ('Antonio', 'm'), ('Timothy', 'm'), ('Kaiden', 'm'), ('Jonah', 'm'), ('Everett', 'm'), ('Miguel', 'm'), ('Steven', 'm'), ('Richard', 'm'), ('Emmett', 'm'), ('Victor', 'm'), ('Kaleb', 'm'), ('Kai', 'm'), ('Maverick', 'm'), ('Joel', 'm'), ('Bryan', 'm'), ('Maddox', 'm'), ('Kingston', 'm'), ('Aidan', 'm'), ('Patrick', 'm'), ('Edward', 'm'), ('Emmanuel', 'm'), ('Jude', 'm'), ('Preston', 'm'), ('Alejandro', 'm'), ('Luca', 'm'), ('Bennett', 'm'), ('Jesse', 'm'), ('Jaden', 'm'), ('Colin', 'm'), ('Malachi', 'm'), ('Kaden', 'm'), ('Jayce', 'm'), ('Alan', 'm'), ('Marcus', 'm'), ('Kyle', 'm'), ('Brian', 'm'), ('Ryker', 'm'), ('Grant', 'm'), ('Abel', 'm'), ('Jeremy', 'm'), ('Riley', 'n'), ('Calvin', 'm'), ('Brantley', 'm'), ('Caden', 'm'), ('Oscar', 'm'), ('Abraham', 'm'), ('Brady', 'm'), ('Sean', 'm'), ('Jake', 'm'), ('Tucker', 'm'), ('Nicolas', 'm'), ('Mark', 'm'), ('Amir', 'm'), ('Avery', 'n'), ('King', 'm'), ('Gael', 'm'), ('Kenneth', 'm'), ('Bradley', 'm'), ('Cayden', 'm'), ('Xander', 'm'), ('Graham', 'm'), ('Paul', 'm'), ('Emma', 'f'), ('Olivia', 'f'), ('Sophia', 'f'), ('Isabella', 'f'), ('Ava', 'f'), ('Mia', 'f'), ('Abigail', 'f'), ('Emily', 'f'), ('Charlotte', 'f'), ('Madison', 'f'), ('Elizabeth', 'f'), ('Amelia', 'f'), ('Evelyn', 'f'), ('Ella', 'f'), ('Chloe', 'f'), ('Harper', 'f'), ('Sofia', 'f'), ('Grace', 'f'), ('Addison', 'f'), ('Victoria', 'f'), ('Lily', 'f'), ('Natalie', 'f'), ('Aubrey', 'f'), ('Zoey', 'f'), ('Lillian', 'f'), ('Hannah', 'f'), ('Layla', 'f'), ('Brooklyn', 'f'), ('Scarlett', 'f'), ('Zoe', 'f'), ('Camila', 'f'), ('Samantha', 'f'), ('Leah', 'f'), ('Aria', 'f'), ('Savannah', 'f'), ('Audrey', 'f'), ('Anna', 'f'), ('Allison', 'f'), ('Gabriella', 'f'), ('Hailey', 'f'), ('Claire', 'f'), ('Penelope', 'f'), ('Aaliyah', 'f'), ('Sarah', 'f'), ('Nevaeh', 'f'), ('Kaylee', 'f'), ('Stella', 'f'), ('Mila', 'f'), ('Nora', 'f'), ('Ellie', 'f'), ('Bella', 'f'), ('Lucy', 'f'), ('Alexa', 'f'), ('Arianna', 'f'), ('Violet', 'f'), ('Ariana', 'f'), ('Genesis', 'f'), ('Alexis', 'f'), ('Eleanor', 'f'), ('Maya', 'f'), ('Caroline', 'f'), ('Peyton', 'f'), ('Skylar', 'f'), ('Madelyn', 'f'), ('Serenity', 'f'), ('Kennedy', 'f'), ('Taylor', 'f'), ('Alyssa', 'f'), ('Autumn', 'f'), ('Paisley', 'f'), ('Ashley', 'f'), ('Brianna', 'f'), ('Sadie', 'f'), ('Naomi', 'f'), ('Kylie', 'f'), ('Julia', 'f'), ('Sophie', 'f'), ('Mackenzie', 'f'), ('Eva', 'f'), ('Gianna', 'f'), ('Luna', 'f'), ('Katherine', 'f'), ('Hazel', 'f'), ('Khloe', 'f'), ('Ruby', 'f'), ('Piper', 'f'), ('Melanie', 'f'), ('Lydia', 'f'), ('Aubree', 'f'), ('Madeline', 'f'), ('Aurora', 'f'), ('Faith', 'f'), ('Alexandra', 'f'), ('Alice', 'f'), ('Kayla', 'f'), ('Jasmine', 'f'), ('Maria', 'f'), ('Annabelle', 'f'), ('Lauren', 'f'), ('Reagan', 'f'), ('Elena', 'f'), ('Rylee', 'f'), ('Isabelle', 'f'), ('Bailey', 'f'), ('Eliana', 'f'), ('Sydney', 'f'), ('Makayla', 'f'), ('Cora', 'f'), ('Morgan', 'f'), ('Natalia', 'f'), ('Kimberly', 'f'), ('Vivian', 'f'), ('Quinn', 'f'), ('Valentina', 'f'), ('Andrea', 'f'), ('Willow', 'f'), ('Clara', 'f'), ('London', 'f'), ('Jade', 'f'), ('Liliana', 'f'), ('Jocelyn', 'f'), ('Trinity', 'f'), ('Kinsley', 'f'), ('Brielle', 'f'), ('Mary', 'f'), ('Molly', 'f'), ('Hadley', 'f'), ('Delilah', 'f'), ('Emilia', 'f'), ('Josephine', 'f'), ('Brooke', 'f'), ('Lilly', 'f'), ('Ivy', 'f'), ('Adeline', 'f'), ('Payton', 'f'), ('Lyla', 'f'), ('Isla', 'f'), ('Jordyn', 'f'), ('Paige', 'f'), ('Isabel', 'f'), ('Mariah', 'f'), ('Mya', 'f'), ('Nicole', 'f'), ('Valeria', 'f'), ('Destiny', 'f'), ('Rachel', 'f'), ('Ximena', 'f'), ('Emery', 'f'), ('Everly', 'f'), ('Sara', 'f'), ('Angelina', 'f'), ('Adalynn', 'f'), ('Kendall', 'f'), ('Reese', 'f'), ('Aliyah', 'f'), ('Margaret', 'f'), ('Juliana', 'f'), ('Melody', 'f'), ('Amy', 'f'), ('Eden', 'f'), ('Mckenzie', 'f'), ('Laila', 'f'), ('Vanessa', 'f'), ('Ariel', 'f'), ('Gracie', 'f'), ('Valerie', 'f'), ('Adalyn', 'f'), ('Brooklynn', 'f'), ('Gabrielle', 'f'), ('Kaitlyn', 'f'), ('Athena', 'f'), ('Elise', 'f'), ('Jessica', 'f'), ('Adriana', 'f'), ('Leilani', 'f'), ('Ryleigh', 'f'), ('Daisy', 'f'), ('Nova', 'f'), ('Norah', 'f'), ('Eliza', 'f'), ('Rose', 'f'), ('Rebecca', 'f'), ('Michelle', 'f'), ('Alaina', 'f'), ('Catherine', 'f'), ('Londyn', 'f'), ('Summer', 'f'), ('Lila', 'f'), ('Jayla', 'f'), ('Katelyn', 'f'), ('Daniela', 'f'), ('Harmony', 'f'), ('Amaya', 'f'), ('Alana', 'f'), ('Emerson', 'f'), ('Julianna', 'f'), ('Cecilia', 'f'), ('Izabella', 'f'))
+    names_and_genders = (('Noah', 'm'), ('Liam', 'm'), ('Jacob', 'm'), ('William', 'm'), ('Mason', 'm'), ('Ethan', 'm'), ('Michael', 'm'), ('Alexander', 'm'), ('James', 'm'), ('Elijah', 'm'), ('Benjamin', 'm'), ('Daniel', 'm'), ('Aiden', 'm'), ('Logan', 'm'), ('Jayden', 'm'), ('Matthew', 'm'), ('Lucas', 'm'), ('David', 'm'), ('Jackson', 'm'), ('Joseph', 'm'), ('Anthony', 'm'), ('Samuel', 'm'), ('Joshua', 'm'), ('Gabriel', 'm'), ('Andrew', 'm'), ('John', 'm'), ('Christopher', 'm'), ('Oliver', 'm'), ('Dylan', 'm'), ('Carter', 'm'), ('Isaac', 'm'), ('Luke', 'm'), ('Henry', 'm'), ('Owen', 'm'), ('Ryan', 'm'), ('Nathan', 'm'), ('Wyatt', 'm'), ('Caleb', 'm'), ('Sebastian', 'm'), ('Jack', 'm'), ('Christian', 'm'), ('Jonathan', 'm'), ('Julian', 'm'), ('Landon', 'm'), ('Levi', 'm'), ('Isaiah', 'm'), ('Hunter', 'm'), ('Aaron', 'm'), ('Thomas', 'm'), ('Charles', 'm'), ('Eli', 'm'), ('Jaxon', 'm'), ('Connor', 'm'), ('Nicholas', 'm'), ('Jeremiah', 'm'), ('Grayson', 'm'), ('Cameron', 'm'), ('Brayden', 'm'), ('Adrian', 'n'), ('Evan', 'm'), ('Jordan', 'n'), ('Josiah', 'm'), ('Angel', 'm'), ('Robert', 'm'), ('Gavin', 'm'), ('Tyler', 'm'), ('Austin', 'm'), ('Colton', 'm'), ('Jose', 'm'), ('Dominic', 'm'), ('Brandon', 'm'), ('Ian', 'm'), ('Lincoln', 'm'), ('Hudson', 'm'), ('Kevin', 'm'), ('Zachary', 'm'), ('Adam', 'm'), ('Mateo', 'm'), ('Jason', 'm'), ('Chase', 'm'), ('Nolan', 'm'), ('Ayden', 'm'), ('Cooper', 'm'), ('Parker', 'n'), ('Xavier', 'm'), ('Asher', 'm'), ('Carson', 'm'), ('Jace', 'm'), ('Easton', 'm'), ('Justin', 'm'), ('Leo', 'm'), ('Bentley', 'm'), ('Jaxson', 'm'), ('Nathaniel', 'm'), ('Blake', 'm'), ('Elias', 'm'), ('Theodore', 'm'), ('Kayden', 'm'), ('Luis', 'm'), ('Tristan', 'm'), ('Ezra', 'm'), ('Bryson', 'm'), ('Juan', 'm'), ('Brody', 'm'), ('Vincent', 'm'), ('Micah', 'm'), ('Miles', 'm'), ('Santiago', 'm'), ('Cole', 'm'), ('Ryder', 'm'), ('Carlos', 'm'), ('Damian', 'm'), ('Leonardo', 'm'), ('Roman', 'm'), ('Max', 'm'), ('Sawyer', 'm'), ('Jesus', 'm'), ('Diego', 'm'), ('Greyson', 'm'), ('Alex', 'm'), ('Maxwell', 'm'), ('Axel', 'm'), ('Eric', 'm'), ('Wesley', 'm'), ('Declan', 'm'), ('Giovanni', 'm'), ('Ezekiel', 'm'), ('Braxton', 'm'), ('Ashton', 'm'), ('Ivan', 'm'), ('Hayden', 'n'), ('Camden', 'm'), ('Silas', 'm'), ('Bryce', 'm'), ('Weston', 'm'), ('Harrison', 'm'), ('Jameson', 'm'), ('George', 'm'), ('Antonio', 'm'), ('Timothy', 'm'), ('Kaiden', 'm'), ('Jonah', 'm'), ('Everett', 'm'), ('Miguel', 'm'), ('Steven', 'm'), ('Richard', 'm'), ('Emmett', 'm'), ('Victor', 'm'), ('Kaleb', 'm'), ('Kai', 'm'), ('Maverick', 'm'), ('Joel', 'm'), ('Bryan', 'm'), ('Maddox', 'm'), ('Kingston', 'm'), ('Aidan', 'm'), ('Patrick', 'm'), ('Edward', 'm'), ('Emmanuel', 'm'), ('Jude', 'm'), ('Preston', 'm'), ('Alejandro', 'm'), ('Luca', 'm'), ('Bennett', 'm'), ('Jesse', 'm'), ('Jaden', 'm'), ('Colin', 'm'), ('Malachi', 'm'), ('Kaden', 'm'), ('Jayce', 'm'), ('Alan', 'm'), ('Marcus', 'm'), ('Kyle', 'm'), ('Brian', 'm'), ('Ryker', 'm'), ('Grant', 'm'), ('Abel', 'm'), ('Jeremy', 'm'), ('Riley', 'n'), ('Calvin', 'm'), ('Brantley', 'm'), ('Caden', 'm'), ('Oscar', 'm'), ('Abraham', 'm'), ('Brady', 'm'), ('Sean', 'm'), ('Jake', 'm'), ('Tucker', 'm'), ('Nicolas', 'm'), ('Mark', 'm'), ('Amir', 'm'), ('Avery', 'n'), ('King', 'm'), ('Gael', 'm'), ('Kenneth', 'm'), ('Bradley', 'm'), ('Cayden', 'm'), ('Xander', 'm'), ('Graham', 'm'), ('Paul', 'm'), ('Emma', 'f'), ('Olivia', 'f'), ('Sophia', 'f'), ('Isabella', 'f'), ('Ava', 'f'), ('Mia', 'f'), ('Abigail', 'f'), ('Emily', 'f'), ('Charlotte', 'f'), ('Madison', 'f'), ('Elizabeth', 'f'), ('Amelia', 'f'), ('Evelyn', 'f'), ('Ella', 'f'), ('Chloe', 'f'), ('Harper', 'f'), ('Sofia', 'f'), ('Grace', 'f'), ('Addison', 'f'), ('Victoria', 'f'), ('Lily', 'f'), ('Natalie', 'f'), ('Aubrey', 'f'), ('Zoey', 'f'), ('Lillian', 'f'), ('Hannah', 'f'), ('Layla', 'f'), ('Brooklyn', 'f'), ('Scarlett', 'f'), ('Zoe', 'f'), ('Camila', 'f'), ('Samantha', 'f'), ('Leah', 'f'), ('Aria', 'f'), ('Savannah', 'f'), ('Audrey', 'f'), ('Anna', 'f'), ('Allison', 'f'), ('Gabriella', 'f'), ('Hailey', 'f'), ('Claire', 'f'), ('Penelope', 'f'), ('Aaliyah', 'f'), ('Sarah', 'f'), ('Nevaeh', 'f'), ('Kaylee', 'f'), ('Stella', 'f'), ('Mila', 'f'), ('Nora', 'f'), ('Ellie', 'f'), ('Bella', 'f'), ('Lucy', 'f'), ('Alexa', 'f'), ('Arianna', 'f'), ('Violet', 'f'), ('Ariana', 'f'), ('Genesis', 'f'), ('Alexis', 'f'), ('Eleanor', 'f'), ('Maya', 'f'), ('Caroline', 'f'), ('Peyton', 'f'), ('Skylar', 'f'), ('Madelyn', 'f'), ('Serenity', 'f'), ('Kennedy', 'f'), ('Taylor', 'f'), ('Alyssa', 'f'), ('Autumn', 'f'), ('Paisley', 'f'), ('Ashley', 'f'), ('Brianna', 'f'), ('Sadie', 'f'), ('Naomi', 'f'), ('Kylie', 'f'), ('Julia', 'f'), ('Sophie', 'f'), ('Mackenzie', 'f'), ('Eva', 'f'), ('Gianna', 'f'), ('Luna', 'f'), ('Katherine', 'f'), ('Hazel', 'f'), ('Khloe', 'f'), ('Ruby', 'f'), ('Piper', 'f'), ('Melanie', 'f'), ('Lydia', 'f'), ('Aubree', 'f'), ('Madeline', 'f'), ('Aurora', 'f'), ('Faith', 'f'), ('Alexandra', 'f'), ('Alice', 'f'), ('Kayla', 'f'), ('Jasmine', 'f'), ('Maria', 'f'), ('Annabelle', 'f'), ('Lauren', 'f'), ('Reagan', 'f'), ('Elena', 'f'), ('Rylee', 'f'), ('Isabelle', 'f'), ('Bailey', 'f'), ('Eliana', 'f'), ('Sydney', 'f'), ('Makayla', 'f'), ('Cora', 'f'), ('Morgan', 'f'), ('Natalia', 'f'), ('Kimberly', 'f'), ('Vivian', 'f'), ('Quinn', 'f'), ('Valentina', 'f'), ('Andrea', 'f'), ('Willow', 'f'), ('Clara', 'f'), ('London', 'f'), ('Jade', 'f'), ('Liliana', 'f'), ('Jocelyn', 'f'), ('Trinity', 'f'), ('Kinsley', 'f'), ('Brielle', 'f'), ('Mary', 'f'), ('Molly', 'f'), ('Hadley', 'f'), ('Delilah', 'f'), ('Emilia', 'f'), ('Josephine', 'f'), ('Brooke', 'f'), ('Lilly', 'f'), ('Ivy', 'f'), ('Adeline', 'f'), ('Payton', 'f'), ('Lyla', 'f'), ('Isla', 'f'), ('Jordyn', 'f'), ('Paige', 'f'), ('Isabel', 'f'), ('Mariah', 'f'), ('Mya', 'f'), ('Nicole', 'f'), ('Valeria', 'f'), ('Destiny', 'f'), ('Rachel', 'f'), ('Ximena', 'f'), ('Emery', 'f'), ('Everly', 'f'), ('Sara', 'f'), ('Angelina', 'f'), ('Adalynn', 'f'), ('Kendall', 'f'), ('Reese', 'f'), ('Aliyah', 'f'), ('Margaret', 'f'), ('Juliana', 'f'), ('Melody', 'f'), ('Amy', 'f'), ('Eden', 'f'), ('Mckenzie', 'f'), ('Laila', 'f'), ('Vanessa', 'f'), ('Ariel', 'f'), ('Gracie', 'f'), ('Valerie', 'f'), ('Adalyn', 'f'), ('Brooklynn', 'f'), ('Gabrielle', 'f'), ('Kaitlyn', 'f'), ('Athena', 'f'), ('Elise', 'f'), ('Jessica', 'f'), ('Adriana', 'f'), ('Leilani', 'f'), ('Ryleigh', 'f'), ('Daisy', 'f'), ('Nova', 'f'), ('Norah', 'f'), ('Eliza', 'f'), ('Rose', 'f'), ('Rebecca', 'f'), ('Michelle', 'f'), ('Alaina', 'f'), ('Catherine', 'f'), ('Londyn', 'f'), ('Summer', 'f'), ('Lila', 'f'), ('Jayla', 'f'), ('Katelyn', 'f'), ('Daniela', 'f'), ('Harmony', 'f'), ('Amaya', 'f'), ('Alana', 'f'), ('Emerson', 'f'), ('Julianna', 'f'), ('Cecilia', 'f'), ('Izabella', 'f'))
     name, gender = random.choice([x for x in names_and_genders if (gender is None or x[1] == gender) and x[0] not in avoid_names])
     person = Person(name, gender)
     return person
+
+def verb_switch(v, g):
+        singular = False if g == 'n' or g == 'p' else True
+        # Looks for pairs (tuples, lists, etc.). Returns left if singular, right if plural. 
+        if len(v) == 2 and not isinstance(v, str):
+            return v[0] if singular else v[1]
+        
+        # Allowable non-pair special verbs
+        special_verb_singular_plural = (('is', 'are'), ('does', 'do'), ('has', 'have'))
+        for vs, vp in special_verb_singular_plural:
+            if v == vs or v == vp:
+                if singular:
+                    return vs
+                else:
+                    return vp
+
+        # Other non-pairs will have 's' shaved off/added on    
+        if singular:
+            common_verb = v + 's' if v[-1] != 's' else v
+        else:
+            common_verb = v[:-1] if v[-1] == 's' else v
+        return common_verb
 
 if __name__ == "__main__":
     main()

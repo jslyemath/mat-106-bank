@@ -13,6 +13,14 @@
             </description>
         </outcome>
         <outcome>
+            <title>Word Problems (Basic Arithmetic)</title>
+            <slug>G2</slug>
+            <path>outcomes/G2</path>
+            <description>
+                I can solve word problems using basic arithmetic operations.
+            </description>
+        </outcome>
+        <outcome>
             <title>Ancient Numeration Systems</title>
             <slug>W1</slug>
             <path>outcomes/W1</path>
